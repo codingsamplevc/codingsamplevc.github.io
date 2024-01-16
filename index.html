@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="styles.css">
   <title>My page</title>
   <script>
-    function createTicTacToeTable(id){
+    function createTicTacToeTable(el_id){
       function returnTableCell(){
         return document.createElement("td");
       }
@@ -23,16 +23,16 @@
         const tRow = returnTableRow();
         table.appendChild(tRow);
       }
-      const el = document.getElementById(id);
-      el.appendChild(table);
+      const tableContainer = document.getElementById(el_id);
+      tableContainer.appendChild(table);
     }
-    
+    createTicTacToeTable("js_1");
     function tictactoe(){
       let player = "X";
       let turn = 1;
       return;
     }
-    createTicTacToeTable("js_1");
+    
   </script>
 </head>
 <body>
