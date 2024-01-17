@@ -18,13 +18,17 @@
         }
         return tRow;
       }
-      const table = document.createElement("table");
-      for (let i = 0; i < 3; i++){
-        const tRow = returnTableRow();
-        table.appendChild(tRow);
+      let tableId = "tttTable";
+      if (document.getElementById(tableId)){
+        const table = document.createElement("table");
+        table.id = tableId;
+        for (let i = 0; i < 3; i++){
+          const tRow = returnTableRow();
+          table.appendChild(tRow);
+        }
+        const tableContainer = document.getElementById(el_id);
+        tableContainer.appendChild(table);
       }
-      const tableContainer = document.getElementById(el_id);
-      tableContainer.appendChild(table);
     }
     
     function tictactoe(){
