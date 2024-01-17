@@ -19,7 +19,7 @@
         return tRow;
       }
       let tableId = "tttTable";
-      if (document.getElementById(tableId)){
+      if (!document.getElementById(tableId)){
         const table = document.createElement("table");
         table.id = tableId;
         for (let i = 0; i < 3; i++){
