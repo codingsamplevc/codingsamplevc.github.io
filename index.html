@@ -19,10 +19,10 @@
       let diagL = 0;
       let diagR = 0;
       for (let k = 0; k < 3; k++){
-        if (getCellValue(`${k}${k}`)){
+        if (getCellValue(`${k}${k}`) == player){
           diagL++;
         }
-        if (getCellValue(`${k}${2 - k}`)){
+        if (getCellValue(`${k}${2 - k}`) == player){
           diagR++;
         }
       }
@@ -51,7 +51,7 @@
       return players[playerTurn++ % 2];
     }
     function chooseCell(){
-      if (!this.innerHTML){
+      if (this.innerHTML != ' '){
         this.innerHTML = getPlayerTurn();
         let curPlayer = this.innerHTML;
         let curPos = this.id;
@@ -64,6 +64,7 @@
         const tCell = document.createElement("td");
         tCell.id = id;
         tCell.onclick = chooseCell;
+        tCell.innerHTML = ' ';
         return tCell;
       }
       function returnTableRow(i){
@@ -87,15 +88,15 @@
       }
     }
 
-    function checkCell(el){
-      return;
-    }
+    // function checkCell(el){
+    //   return;
+    // }
     
-    function tictactoe(){
-      let player = "X";
-      let turn = 1;
-      return;
-    }
+    // function tictactoe(){
+    //   let player = "X";
+    //   let turn = 1;
+    //   return;
+    // }
   </script>
 </head>
 <body>
