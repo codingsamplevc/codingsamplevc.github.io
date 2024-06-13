@@ -59,7 +59,7 @@
         this.innerHTML = getPlayerTurn();
         let curPlayer = this.innerHTML;
         if (checkWinCondition(curPlayer)){
-          const gameStatusEl = document.getElementById("gameStatus");
+          const gameStatusEl = document.getElementById("game_status");
           gameStatusEl.innerHTML = `Player ${player[playerTurn % 2]} won!`;
         }
       } else {
@@ -93,24 +93,16 @@
         const tableContainer = document.getElementById(el_id);
         tableContainer.appendChild(table);
 
-        const gameStatusEl = document.getElementById("gameStatus");
+        const gameStatusEl = document.getElementById("game_status");
         gameStatusEl.innerHTML = `Player ${player[playerTurn % 2]}'s turn`;
       }
-      if (document.getElementById("gameStatus").innerHTML){
-        const gameStatusEl = document.getElementById("gameStatus");
-        gameStatusEl.innerHTML = `Player ${player[playerTurn % 2]}'s turn`;
+      if (document.getElementById("gameStatus")){
+        const gameStatusEl = document.getElementById("game_status");
+        if (gameStatusEl.innerHTML){
+          gameStatusEl.innerHTML = `Player ${player[playerTurn % 2]}'s turn`;
+        }
       }
     }
-
-    // function checkCell(el){
-    //   return;
-    // }
-    
-    // function tictactoe(){
-    //   let player = "X";
-    //   let turn = 1;
-    //   return;
-    // }
   </script>
 </head>
 <body>
@@ -119,7 +111,7 @@
   <button type="button" onclick="createTicTacToeTable('js_1')">Create table</button>
   <div id="js_1">
     <p>TicTacToe board</p>
-    <p id="gameStatus"></p>
+    <p id="game_status"></p>
   </div>
   <hr />
   <div id="js_2">
