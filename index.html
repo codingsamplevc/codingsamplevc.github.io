@@ -50,11 +50,11 @@
     function getPlayerTurn(){
       return players[playerTurn++ % 2];
     }
-    function chooseCell(el){
-      if (!el.innerHTML){
-        el.innerHTML = getPlayerTurn();
-        let curPlayer = el.innerHTML;
-        let curPos = el.id;
+    function chooseCell(){
+      if (!this.innerHTML){
+        this.innerHTML = getPlayerTurn();
+        let curPlayer = this.innerHTML;
+        let curPos = this.id;
       } else {
         
       }
@@ -107,7 +107,7 @@
   </div>
   <hr />
   <div id="js_2">
-    <p></p>
+    <p>2</p>
   </div>
   <hr />
   <div id="js_3">
