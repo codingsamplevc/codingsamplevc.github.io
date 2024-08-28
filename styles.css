@@ -8,5 +8,5 @@ table {
 }
 td {
   border: 2px solid;
-  margin: 20px;
+  overflow: hidden;
 }
