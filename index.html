@@ -68,10 +68,10 @@
     }
     
     function chooseCell(){
-      if (this.innerHTML == ' '){
+      if (!document.getElementById("ttt_game_status").innerHTML && this.innerHTML == ' '){
         this.innerHTML = getPlayerTurn();
         const curPlayer = getPlayerTurn();
-        if (!document.getElementById("ttt_game_status").innerHTML && playerTurn > 4 && checkWinCondition(curPlayer)){
+        if (playerTurn > 4 && checkWinCondition(curPlayer)){
           const gameStatusEl = document.getElementById("ttt_game_status");
           gameStatusEl.innerHTML = `Player ${curPlayer} won!`;
         }
@@ -102,29 +102,27 @@
         return tRow;
       }
       
-      let tableId = "tttTable";
+      const tableId = "tttTable";
       if (!document.getElementById(tableId)){
-        const table = document.createElement("table");
-        table.id = tableId;
+        const tableEl = document.createElement("table");
+        tableEl.id = tableId;
+        
         for (let i = 0; i < 3; i++){
           const tRow = returnTableRow(i);
-          table.appendChild(tRow);
+          tableEl.appendChild(tRow);
         }
+        
         const tableContainer = document.getElementById(el_id);
-        tableContainer.appendChild(table);
+        tableContainer.appendChild(tableEl);
 
-        //const gameStatusEl = document.getElementById("ttt_game_status");
-        //gameStatusEl.innerHTML = `Player ${player[playerTurn % 2]}'s turn`;
+        const gameStatusEl = document.createElement("p");
+        gameStatusEl.id = "ttt_game_status";
+        tableContainer.appendChild(gameStatusEl);
       }
-      // if (document.getElementById("gameStatus")){
-      //   const gameStatusEl = document.getElementById("ttt_game_status");
-      //   if (gameStatusEl.innerHTML){
-      //     gameStatusEl.innerHTML = `Player ${player[playerTurn % 2]}'s turn`;
-      //   }
-      // }
     }
     
     function resetTicTacToe(el_id){
+      if (!document.getElementById("tttTable")) { return; }
       for (let i = 0; i < 3; i++){
         for (let j = 0; j < 3; j++){
           const cell = document.getElementById(`${cell_id_prefix}_${i}_${j}`);
@@ -145,7 +143,6 @@
   <div id="js_1">
     <!-- Javascript example 1: TicTacToe game -->
     <p>TicTacToe board</p>
-    <p id="ttt_game_status"></p>
   </div>
   <hr />
   <div id="js_2">
