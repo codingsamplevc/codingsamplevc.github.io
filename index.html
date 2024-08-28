@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="styles.css">
   <title>My page</title>
   <script>
+    // Javascript example 1
     let playerTurn = 1;
     const players = ['O','X'];
     const cell_id_prefix = 'cell';
@@ -124,7 +125,15 @@
     }
     
     function resetTicTacToe(el_id){
-      
+      for (let i = 0; i < 3; i++){
+        for (let j = 0; j < 3; j++){
+          const cell = document.getElementById(`${cell_id_prefix}_${i}_${j}`);
+          cell.innerHTML = ' ';
+        }
+      }
+      resetPlayerTurn();
+      const gameStatusEl = document.getElementById("game_status");
+      gameStatusEl.innerHTML = '';
     }
   </script>
 </head>
