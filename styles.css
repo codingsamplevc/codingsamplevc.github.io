@@ -11,4 +11,5 @@ table {
 td {
   border: 2px solid;
   overflow: hidden;
+  padding: 40px;
 }
