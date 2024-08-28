@@ -135,7 +135,13 @@
     }
   </script>
   <script>
-    
+    const form = document.getElementById("css_form");
+
+    function getFormDataObject(event){
+      const form = event.target;
+      const formData = new FormData(form);
+      return formData;
+    }
 
 
     function modifyInlineStyleOfElement(el_id, changes, removes){
@@ -152,7 +158,7 @@
     }
 
     function readForm(){
-      
+      const formEl = document.getElementById("css_form");
     }
     
     function asd(){
@@ -183,6 +189,8 @@
       <input name="font_size" type="number">
       <label for="text_font"></label>
       <input name="text_font" type="text">
+
+      <input type="submit">
     </form>
     <button type="button" onclick=""></button>
   </div>
