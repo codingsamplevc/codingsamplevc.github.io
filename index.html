@@ -137,18 +137,17 @@
   <script>
     // JavaScript example 2
     
-    function _(){
-      const form = document.getElementById("css_form");
+    const form = document.getElementById("css_form");
 
-      function handleCSSForm(event){
-        const form = event.target;
-        const formData = new FormData(form);
-        return formData;
-      }
+    function handleCSSForm(event){
+      const form = event.target;
+      const formData = new FormData(form);
+      return formData;
+    }
 
-      form.addEventListener("submit", handleCSSForm); 
-    }();
-    
+    // form.addEventListener("submit", handleCSSForm); 
+    const cssButton = document.getElementById("css_submit");
+    cssButton.addEventListener("click", handleCSSForm); 
 
 
     function modifyInlineStyleOfElement(el_id, changes, removes){
@@ -199,6 +198,7 @@
 
       <input type="submit" value="Change style">
     </form>
+    <button id="css_submit">Change Style</button>
   </div>
   <hr />
   <div id="js_3">
