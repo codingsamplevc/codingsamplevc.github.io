@@ -7,10 +7,11 @@ table {
   table-layout: fixed;
   width: 120px;
   height: 120px;
-  padding: 120px;
 }
 td {
   border: 2px solid;
   overflow: hidden;
   text-align: center;
+  width: 40px;
+  height: 40px;
 }
