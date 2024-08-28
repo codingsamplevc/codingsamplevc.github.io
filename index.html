@@ -135,13 +135,21 @@
     }
   </script>
   <script>
-    const form = document.getElementById("css_form");
 
-    function getFormDataObject(event){
-      const form = event.target;
-      const formData = new FormData(form);
-      return formData;
-    }
+    (
+      function _(){
+        const form = document.getElementById("css_form");
+
+        function handleCSSForm(event){
+          const form = event.target;
+          const formData = new FormData(form);
+          return formData;
+        }
+
+        form.addEventListener("submit", handleCSSForm); 
+      }
+    )();
+    
 
 
     function modifyInlineStyleOfElement(el_id, changes, removes){
@@ -192,7 +200,6 @@
 
       <input type="submit" value="Change style">
     </form>
-<!--     <button type="button" onclick=""></button> -->
   </div>
   <hr />
   <div id="js_3">
