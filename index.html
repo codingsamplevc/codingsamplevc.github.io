@@ -80,9 +80,6 @@
       }
     }
 
-    function playerMove(){
-      if (this
-    }
     
     function createTicTacToeTable(el_id){
       // Function that creates an HTML table that can be used to play TicTacToe
@@ -99,7 +96,6 @@
       function returnTableRow(i){
         const tRow = document.createElement("tr");
         for (let j = 0; j < 3; j++){
-          // const tCell = returnTableCell();
           tRow.appendChild(returnTableCell(`${cell_id_prefix}_${i}_${j}`));
         }
         return tRow;
