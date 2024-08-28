@@ -136,19 +136,18 @@
   </script>
   <script>
     // JavaScript example 2
-    (
-      function _(){
-        const form = document.getElementById("css_form");
+    
+    function _(){
+      const form = document.getElementById("css_form");
 
-        function handleCSSForm(event){
-          const form = event.target;
-          const formData = new FormData(form);
-          return formData;
-        }
+      function handleCSSForm(event){
+        const form = event.target;
+        const formData = new FormData(form);
+        return formData;
+      }
 
-        form.addEventListener("submit", handleCSSForm); 
-      }();
-    )();
+      form.addEventListener("submit", handleCSSForm); 
+    }();
     
 
 
