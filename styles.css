@@ -18,5 +18,5 @@ td {
 form {
   display: flex;
   flex-direction: column;
-  flex-align: flex-start;
+  align-items: flex-start;
 }
