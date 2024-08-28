@@ -71,8 +71,8 @@
       if (this.innerHTML == ' '){
         this.innerHTML = getPlayerTurn();
         const curPlayer = getPlayerTurn();
-        if (playerTurn > 4 && checkWinCondition(curPlayer)){
-          const gameStatusEl = document.getElementById("game_status");
+        if (!document.getElementById("ttt_game_status").innerHTML && playerTurn > 4 && checkWinCondition(curPlayer)){
+          const gameStatusEl = document.getElementById("ttt_game_status");
           gameStatusEl.innerHTML = `Player ${curPlayer} won!`;
         }
         advancePlayerTurn();
@@ -113,15 +113,15 @@
         const tableContainer = document.getElementById(el_id);
         tableContainer.appendChild(table);
 
-        const gameStatusEl = document.getElementById("game_status");
-        gameStatusEl.innerHTML = `Player ${player[playerTurn % 2]}'s turn`;
+        //const gameStatusEl = document.getElementById("ttt_game_status");
+        //gameStatusEl.innerHTML = `Player ${player[playerTurn % 2]}'s turn`;
       }
-      if (document.getElementById("gameStatus")){
-        const gameStatusEl = document.getElementById("game_status");
-        if (gameStatusEl.innerHTML){
-          gameStatusEl.innerHTML = `Player ${player[playerTurn % 2]}'s turn`;
-        }
-      }
+      // if (document.getElementById("gameStatus")){
+      //   const gameStatusEl = document.getElementById("ttt_game_status");
+      //   if (gameStatusEl.innerHTML){
+      //     gameStatusEl.innerHTML = `Player ${player[playerTurn % 2]}'s turn`;
+      //   }
+      // }
     }
     
     function resetTicTacToe(el_id){
@@ -132,7 +132,7 @@
         }
       }
       resetPlayerTurn();
-      const gameStatusEl = document.getElementById("game_status");
+      const gameStatusEl = document.getElementById("ttt_game_status");
       gameStatusEl.innerHTML = '';
     }
   </script>
@@ -144,7 +144,7 @@
   <button type="button" onclick="resetTicTacToe('js_1')">Reset table</button>
   <div id="js_1">
     <p>TicTacToe board</p>
-    <p id="game_status"></p>
+    <p id="ttt_game_status"></p>
   </div>
   <hr />
   <div id="js_2">
