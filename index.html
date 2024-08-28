@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="styles.css">
   <title>My page</title>
   <script>
-    // Javascript example 1
+    // JavaScript example 1
     let playerTurn = 1;
     const players = ['O','X'];
     const cell_id_prefix = 'cell';
@@ -134,19 +134,57 @@
       gameStatusEl.innerHTML = '';
     }
   </script>
+  <script>
+    
+
+
+    function modifyInlineStyleOfElement(el_id, changes, removes){
+      const el = document.getElementById(el_id);
+      const elStyle = el.style;
+
+      for (const prop in changes){
+        elStyle.setProperty(prop, changes[prop]);
+      }
+
+      for (const prop of removes){
+        elStyle.removeProperty(prop);
+      }
+    }
+
+    function readForm(){
+      
+    }
+    
+    function asd(){
+      const abc = document.createElemnt("div");
+      const container = document.getElementById("js_2");
+      container.appendChild(abc);
+    }
+  </script>
 </head>
 <body>
-  <h1>Test</h1>
-  <p>Hello world!</p>
-  <button type="button" onclick="createTicTacToeTable('js_1')">Create table</button>
-  <button type="button" onclick="resetTicTacToe('js_1')">Reset table</button>
+  <h1>JavaScript Examples</h1>
+  <p>A few JavaScript</p>
+  <hr />
   <div id="js_1">
-    <!-- Javascript example 1: TicTacToe game -->
+    <button type="button" onclick="createTicTacToeTable('js_1')">Create table</button>
+    <button type="button" onclick="resetTicTacToe('js_1')">Reset table</button>
+    <!-- JavaScript example 1: TicTacToe game -->
     <p>TicTacToe board</p>
   </div>
   <hr />
   <div id="js_2">
-    <p>2</p>
+    <p>CSS style</p>
+    <p id="css_style">Lorem ipsum dolor est</p>
+    <form id="css_form">
+      <label for="text_color">Text color</label>
+      <input name="text_color" type="color">
+      <label for="font_size"></label>
+      <input name="font_size" type="number">
+      <label for="text_font"></label>
+      <input name="text_font" type="text">
+    </form>
+    <button type="button" onclick=""></button>
   </div>
   <hr />
   <div id="js_3">
