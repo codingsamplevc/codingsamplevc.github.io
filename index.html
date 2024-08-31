@@ -175,7 +175,9 @@
       for (let kv of formData_entries){
         if (kv[0] == "font-size"){
           // changes_obj[kv[0]] = new Number(kv[1]);
-          changes_obj[kv[0]] = `${parseInt(kv[1])}px`;
+          if (parseInt(kv[1] > 0){
+            changes_obj[kv[0]] = `${parseInt(kv[1])}px`;
+          }
         } else {
           changes_obj[kv[0]] = kv[1];
         }
@@ -193,7 +195,9 @@
     function convertIntoRules(rules_obj){
       let rules_code = `_ {\n`;
       for (const prop in rules_obj){
-        rules_code += `${prop}: ${rules_obj[prop]};\n`;
+        if (rules_obj[prop]){
+          rules_code += `${prop}: ${rules_obj[prop]};\n`;
+        }
       }
       rules_code += `}`;
       return rules_code;
@@ -219,7 +223,7 @@
       <label for="color">Text color</label>
       <input name="color" type="color">
       <label for="font-size">Font size</label>
-      <input name="font-size" type="number" min="6" max="50">
+      <input name="font-size" type="number" min="6" max="50" value="16">
       <label for="font-family">Font (family)</label>
       <input name="font-family" type="text">
 
