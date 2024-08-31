@@ -147,7 +147,10 @@
       
       const formData = new FormData(form);
       const formData_entries = formData.entries();
-      console.log(formData_entries);
+      // console.log(formData_entries);
+      for (let kv of formData_entries){
+        console.log(kv);
+      }
     }
 
     function setup_css_form(){
