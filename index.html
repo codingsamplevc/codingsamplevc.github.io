@@ -172,7 +172,7 @@
       for (let kv of formData_entries){
         if (kv[0] == "font-size"){
           // changes_obj[kv[0]] = new Number(kv[1]);
-          changes_obj[kv[0]] = parseInt(kv[1]);
+          changes_obj[kv[0]] = `${parseInt(kv[1])}px`;
         } else {
           changes_obj[kv[0]] = kv[1];
         }
