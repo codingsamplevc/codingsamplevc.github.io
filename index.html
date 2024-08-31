@@ -139,11 +139,12 @@
     //////////////////////////
     // JavaScript example 2
 
-    function a(){
+    function a(el_id){
       const form = document.createElement("form");
       const rules = [
         [{desc: "Text color", name: "color", type: "color"}, {}],
         [{desc: "Font size", name: "font-size", type: "number"}, {min: 6, max 50, value: 16}],
+        [{desc: "Font (family)", name: "font-family", type: "text"},{"font-family": ''}]
       ];
 
       for (const rule of rules){
@@ -163,7 +164,25 @@
         form.appendChild(input);
       }
 
-      
+      const container = document.getElementById(el_id);
+      container.appendChild(form);
+
+      const br_tag = document.createElement("br");
+      container.appendChild(br_tag);
+
+      const change_style_btn = document.createElement("button");
+      change_style_btn.id = "css_submit";
+      change_style_btn.innerHTML = "Change style";
+      container.appendChild(change_style_btn);
+      change_style_btn.addEventListener("click", handleCSSFormChange);
+
+      const code_desc = document.createElement("p");
+      code_desc.innerHTML = "Below are the rules for the CSS styles";
+      container.appendChild(code_desc);
+
+      const code_block = document.createElement("code");
+      code_block.id = "css_rules";
+      container.appendChild(code_block);
     }
     
     function modifyInlineStyleOfElement(el_id, changes, removes){
