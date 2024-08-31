@@ -141,15 +141,18 @@
     
     // const css_form = document.getElementById("css_form");
 
-    function handleCSSForm(event){
-      const form = event.target;
+    function handleCSSFormChange(){
+      // const form = event.target;
+      const form = ;
+      
       const formData = new FormData(form);
-      return formData;
+      const formData_entries = formData.entries();
+      console.log(formData_entries);
     }
 
     function setup_css_form(){
       const cssButton = document.getElementById("css_submit");
-      cssButton.addEventListener("click", handleCSSForm);
+      cssButton.addEventListener("click", handleCSSFormChange);
     }
 
 
@@ -189,9 +192,9 @@
   </div>
   <hr />
   <div id="js_2">
-    <p>CSS style</p>
-    <p id="css_style">Lorem ipsum dolor est</p>
     <button onclick="setup_css_form()">Setup CSS-form</button>
+    <p>Interactive CSS style form</p>
+    <p id="css_style">Change how the text's appearance through a form.</p>
     <form id="css_form" action="">
       <label for="text_color">Text color</label>
       <input name="text_color" type="color">
@@ -201,8 +204,8 @@
       <input name="text_font" type="text">
 
 <!--       <input type="submit" value="Change style"> -->
+      <button id="css_submit">Change Style</button>
     </form>
-    <button id="css_submit">Change Style</button>
   </div>
   <hr />
   <div id="js_3">
