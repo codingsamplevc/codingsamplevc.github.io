@@ -123,7 +123,7 @@
     }
     
     function resetTicTacToe(el_id){
-      if (!document.getElementById("tttTable")) { return; }
+      if (!document.getElementById(el_id)) { return; }
       for (let i = 0; i < 3; i++){
         for (let j = 0; j < 3; j++){
           const cell = document.getElementById(`${cell_id_prefix}_${i}_${j}`);
@@ -138,6 +138,33 @@
   <script>
     //////////////////////////
     // JavaScript example 2
+
+    function a(){
+      const form = document.createElement("form");
+      const rules = [
+        [{desc: "Text color", name: "color", type: "color"}, {}],
+        [{desc: "Font size", name: "font-size", type: "number"}, {min: 6, max 50, value: 16}],
+      ];
+
+      for (const rule of rules){
+        const label = document.createElement("label");
+        label.for = rule[0].name;
+        label.innerHTML = rule[0].desc;
+        form.appendChild(label);
+        
+        const input = document.createElement("input");
+        input.name = rule[0].name;
+        
+        if (Object.keys(rule[1]).length > 0){
+          for (const a in rule[1]){
+            input[a] = rule[1][a];
+          }
+        }
+        form.appendChild(input);
+      }
+
+      
+    }
     
     function modifyInlineStyleOfElement(el_id, changes, removes){
       const el = document.getElementById(el_id);
@@ -196,6 +223,12 @@
       return rules_code;
     }
   </script>
+  <script>
+    ////////////////////////
+    // JavaScript example 3
+
+    
+  </script>
 </head>
 <body>
   <h1>JavaScript Examples</h1>
@@ -203,7 +236,7 @@
   <hr />
   <div id="js_1">
     <button type="button" onclick="createTicTacToeTable('js_1')">Create table</button>
-    <button type="button" onclick="resetTicTacToe('js_1')">Reset table</button>
+    <button type="button" onclick="resetTicTacToe('tttTable')">Reset table</button>
     <!-- JavaScript example 1: TicTacToe game -->
     <p>TicTacToe board</p>
   </div>
@@ -213,7 +246,7 @@
     <!-- JavaScript example 2: Interactive CSS -->
     <p>Interactive CSS style form</p>
     <p id="css_style">Change the text's appearance through a form.</p>
-    <form id="css_form" action="">
+    <form id="css_form">
       <label for="color">Text color</label>
       <input name="color" type="color">
       <label for="font-size">Font size</label>
