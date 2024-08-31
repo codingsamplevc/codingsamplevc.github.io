@@ -140,25 +140,6 @@
     // JavaScript example 2
     
     // const css_form = document.getElementById("css_form");
-
-    function handleCSSFormChange(){
-      // const form = event.target;
-      const form = document.getElementById("css_form");
-      
-      const formData = new FormData(form);
-      const formData_entries = formData.entries();
-      // console.log(formData_entries);
-      for (let kv of formData_entries){
-        console.log(kv);
-      }
-    }
-
-    function setup_css_form(){
-      const cssButton = document.getElementById("css_submit");
-      cssButton.addEventListener("click", handleCSSFormChange);
-    }
-
-
     function modifyInlineStyleOfElement(el_id, changes, removes){
       const el = document.getElementById(el_id);
       const elStyle = el.style;
@@ -171,6 +152,27 @@
         elStyle.removeProperty(prop);
       }
     }
+
+    function handleCSSFormChange(){
+      // const form = event.target;
+      const form = document.getElementById("css_form");
+      
+      const formData = new FormData(form);
+      const formData_entries = formData.entries();
+      // console.log(formData_entries);
+      // for (let kv of formData_entries){
+      //   console.log(kv);
+      // }
+
+      
+    }
+
+    function setup_css_form(){
+      const cssButton = document.getElementById("css_submit");
+      cssButton.addEventListener("click", handleCSSFormChange);
+    }
+
+
 
     function readForm(){
       const formEl = document.getElementById("css_form");
@@ -199,12 +201,12 @@
     <p>Interactive CSS style form</p>
     <p id="css_style">Change how the text's appearance through a form.</p>
     <form id="css_form" action="">
-      <label for="text_color">Text color</label>
-      <input name="text_color" type="color">
-      <label for="font_size">Font size</label>
-      <input name="font_size" type="number" min="6" max="50">
-      <label for="text_font">Font (family)</label>
-      <input name="text_font" type="text">
+      <label for="color">Text color</label>
+      <input name="color" type="color">
+      <label for="font-size">Font size</label>
+      <input name="font-size" type="number" min="6" max="50">
+      <label for="font-family">Font (family)</label>
+      <input name="font-family" type="text">
 
 <!--       <input type="submit" value="Change style"> -->
     </form>
