@@ -139,8 +139,61 @@
     //////////////////////////
     // JavaScript example 2
 
+    function convertIntoRules(rules_obj){
+      let rules_code = `_ {\n`;
+      for (const prop in rules_obj){
+        if (rules_obj[prop]){
+          rules_code += `${prop}: ${rules_obj[prop]};\n`;
+        }
+      }
+      rules_code += `}`;
+      return rules_code;
+    }
+
+    function modifyInlineStyleOfElement(el_id, changes, removes){
+      const el = document.getElementById(el_id);
+      const elStyle = el.style;
+
+      if (Object.keys(changes).length > 0){
+        for (const prop in changes){
+          elStyle.setProperty(prop, changes[prop]);
+        }
+        const rules = convertIntoRules(changes);
+        const codeblock = document.getElementById("css_rules");
+        codeblock.innerHTML = rules;
+      }
+
+      if (Object.keys(removes).length > 0){
+        for (const prop of removes){
+          elStyle.removeProperty(prop);
+        }
+      }
+    }
+
+    function handleCSSFormChange(){
+      const form = document.getElementById("css_form");
+      
+      const formData = new FormData(form);
+      const formData_entries = formData.entries();
+
+      const changes_obj = {};
+      for (let kv of formData_entries){
+        if (kv[0] == "font-size"){
+          if (parseInt(kv[1]) > 0){
+            changes_obj[kv[0]] = `${parseInt(kv[1])}px`;
+          }
+        } else {
+          changes_obj[kv[0]] = kv[1];
+        }
+      }
+      const removes_obj = {};
+      modifyInlineStyleOfElement("css_style", changes_obj, removes_obj);
+    }
+
     function setup_css_form(el_id){
+      
       const form = document.createElement("form");
+      form.class = "css_form";
       const rules = [
         [{desc: "Text color", name: "color", type: "color"}, {}],
         [{desc: "Font size", name: "font-size", type: "number"}, {min: 6, max: 50, value: 16}],
@@ -186,45 +239,9 @@
       container.appendChild(code_block);
     }
     
-    function modifyInlineStyleOfElement(el_id, changes, removes){
-      const el = document.getElementById(el_id);
-      const elStyle = el.style;
+    
 
-      if (Object.keys(changes).length > 0){
-        for (const prop in changes){
-          elStyle.setProperty(prop, changes[prop]);
-        }
-        const rules = convertIntoRules(changes);
-        const codeblock = document.getElementById("css_rules");
-        codeblock.innerHTML = rules;
-      }
-
-      if (Object.keys(removes).length > 0){
-        for (const prop of removes){
-          elStyle.removeProperty(prop);
-        }
-      }
-    }
-
-    function handleCSSFormChange(){
-      const form = document.getElementById("css_form");
-      
-      const formData = new FormData(form);
-      const formData_entries = formData.entries();
-
-      const changes_obj = {};
-      for (let kv of formData_entries){
-        if (kv[0] == "font-size"){
-          if (parseInt(kv[1]) > 0){
-            changes_obj[kv[0]] = `${parseInt(kv[1])}px`;
-          }
-        } else {
-          changes_obj[kv[0]] = kv[1];
-        }
-      }
-      const removes_obj = {};
-      modifyInlineStyleOfElement("css_style", changes_obj, removes_obj);
-    }
+    
 
     // function setup_css_form(){
     //   const cssButton = document.getElementById("css_submit");
@@ -232,16 +249,7 @@
     // }
 
     
-    function convertIntoRules(rules_obj){
-      let rules_code = `_ {\n`;
-      for (const prop in rules_obj){
-        if (rules_obj[prop]){
-          rules_code += `${prop}: ${rules_obj[prop]};\n`;
-        }
-      }
-      rules_code += `}`;
-      return rules_code;
-    }
+    
   </script>
   <script>
     ////////////////////////
