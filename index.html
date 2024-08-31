@@ -144,12 +144,16 @@
       const el = document.getElementById(el_id);
       const elStyle = el.style;
 
-      for (const prop in changes){
-        elStyle.setProperty(prop, changes[prop]);
+      if (changes.keys().length > 0){
+        for (const prop in changes){
+          elStyle.setProperty(prop, changes[prop]);
+        }
       }
 
-      for (const prop of removes){
-        elStyle.removeProperty(prop);
+      if (removes.keys().length > 0){
+        for (const prop of removes){
+          elStyle.removeProperty(prop);
+        }
       }
     }
 
