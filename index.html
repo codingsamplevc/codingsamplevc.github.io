@@ -139,7 +139,7 @@
     //////////////////////////
     // JavaScript example 2
 
-    function a(el_id){
+    function setup_css_form(el_id){
       const form = document.createElement("form");
       const rules = [
         [{desc: "Text color", name: "color", type: "color"}, {}],
@@ -225,10 +225,10 @@
       modifyInlineStyleOfElement("css_style", changes_obj, removes_obj);
     }
 
-    function setup_css_form(){
-      const cssButton = document.getElementById("css_submit");
-      cssButton.addEventListener("click", handleCSSFormChange);
-    }
+    // function setup_css_form(){
+    //   const cssButton = document.getElementById("css_submit");
+    //   cssButton.addEventListener("click", handleCSSFormChange);
+    // }
 
     
     function convertIntoRules(rules_obj){
@@ -261,11 +261,11 @@
   </div>
   <hr />
   <div id="js_2">
-    <button onclick="setup_css_form()">Setup CSS-form</button>
+    <button onclick="setup_css_form('js_2)">Setup CSS-form</button>
     <!-- JavaScript example 2: Interactive CSS -->
     <p>Interactive CSS style form</p>
     <p id="css_style">Change the text's appearance through a form.</p>
-    <form id="css_form">
+<!--     <form id="css_form">
       <label for="color">Text color</label>
       <input name="color" type="color">
       <label for="font-size">Font size</label>
@@ -276,7 +276,7 @@
     <br />
     <button id="css_submit">Change Style</button>
     <p>Below are the rules for the CSS style</p>
-    <code id="css_rules"></code>
+    <code id="css_rules"></code> -->
   </div>
   <hr />
   <div id="js_3">
