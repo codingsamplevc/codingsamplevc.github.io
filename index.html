@@ -190,13 +190,13 @@
     }
 
     
-    function convertIntoRules(rules){
-      let rules = `_ {\n`;
-      for (const prop in rules){
-        rules += `${prop}: ${rules[prop]};\n`;
+    function convertIntoRules(rules_obj){
+      let rules_code = `_ {\n`;
+      for (const prop in rules_obj){
+        rules_code += `${prop}: ${rules[prop]};\n`;
       }
-      rules += `}`;
-      return rules;
+      rules_code += `}`;
+      return rules_code;
     }
   </script>
 </head>
