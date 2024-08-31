@@ -149,13 +149,13 @@
 
       for (const rule of rules){
         const label = document.createElement("label");
-        // label.for = rule[0].name;
         label.setAttribute("for", rule[0].name);
         label.innerHTML = rule[0].desc;
         form.appendChild(label);
         
         const input = document.createElement("input");
         input.name = rule[0].name;
+        input.type = rule[0].type;
         
         if (Object.keys(rule[1]).length > 0){
           for (const a in rule[1]){
