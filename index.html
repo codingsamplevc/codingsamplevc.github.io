@@ -164,7 +164,12 @@
       //   console.log(kv);
       // }
 
-      
+      const changes_obj = {};
+      for (let kv of formData_entries){
+        changes_obj[kv[0]] = kv[1];
+      }
+      const removes = {};
+      modifyInlineStyleOfElement("css_style", changes_obj, removes_obj);
     }
 
     function setup_css_form(){
@@ -172,11 +177,6 @@
       cssButton.addEventListener("click", handleCSSFormChange);
     }
 
-
-
-    function readForm(){
-      const formEl = document.getElementById("css_form");
-    }
     
     function asd(){
       const abc = document.createElemnt("div");
