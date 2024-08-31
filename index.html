@@ -148,6 +148,9 @@
         for (const prop in changes){
           elStyle.setProperty(prop, changes[prop]);
         }
+        const rules = convertIntoRules(changes);
+        const codeblock = document.getElementById("css_rules");
+        codeblock.innerHTML = rules;
       }
 
       if (Object.keys(removes).length > 0){
@@ -187,10 +190,13 @@
     }
 
     
-    function asd(){
-      const abc = document.createElemnt("div");
-      const container = document.getElementById("js_2");
-      container.appendChild(abc);
+    function convertIntoRules(rules){
+      let rules = `_ {\n`;
+      for (const prop in rules){
+        rules += `${prop}: ${rules[prop]};\n`;
+      }
+      rules += `}`;
+      return rules;
     }
   </script>
 </head>
@@ -219,7 +225,9 @@
 
 <!--       <input type="submit" value="Change style"> -->
     </form>
-      <button id="css_submit">Change Style</button>
+    <button id="css_submit">Change Style</button>
+    <p>Below are the rules for the CSS style</p>
+    <code id="css_rules"></code>
   </div>
   <hr />
   <div id="js_3">
