@@ -193,7 +193,7 @@
     function setup_css_form(el_id){
       
       const form = document.createElement("form");
-      form.class = "css_form";
+      form.id = "css_form";
       const rules = [
         [{desc: "Text color", name: "color", type: "color"}, {}],
         [{desc: "Font size", name: "font-size", type: "number"}, {min: 6, max: 50, value: 16}],
