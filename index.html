@@ -191,6 +191,8 @@
     }
 
     function setup_css_form(el_id){
+
+      if (document.getElementById("css_form")){ return; }
       
       const form = document.createElement("form");
       form.id = "css_form";
