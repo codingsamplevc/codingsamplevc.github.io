@@ -166,7 +166,12 @@
 
       const changes_obj = {};
       for (let kv of formData_entries){
-        changes_obj[kv[0]] = kv[1];
+        if (kv[0] == "font-size"){
+          // changes_obj[kv[0]] = new Number(kv[1]);
+          changes_obj[kv[0]] = parseInt(kv[1]);
+        } else {
+          changes_obj[kv[0]] = kv[1];
+        }
       }
       const removes_obj = {};
       modifyInlineStyleOfElement("css_style", changes_obj, removes_obj);
