@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="styles.css">
   <title>My page</title>
   <script>
+    ////////////////////////
     // JavaScript example 1
     let playerTurn = 1;
     const players = ['O','X'];
@@ -135,9 +136,10 @@
     }
   </script>
   <script>
+    //////////////////////////
     // JavaScript example 2
     
-    const form = document.getElementById("css_form");
+    // const css_form = document.getElementById("css_form");
 
     function handleCSSForm(event){
       const form = event.target;
@@ -145,9 +147,10 @@
       return formData;
     }
 
-    // form.addEventListener("submit", handleCSSForm); 
-    const cssButton = document.getElementById("css_submit");
-    cssButton.addEventListener("click", handleCSSForm); 
+    function setup_css_form(){
+      const cssButton = document.getElementById("css_submit");
+      cssButton.addEventListener("click", handleCSSForm);
+    }
 
 
     function modifyInlineStyleOfElement(el_id, changes, removes){
@@ -188,6 +191,7 @@
   <div id="js_2">
     <p>CSS style</p>
     <p id="css_style">Lorem ipsum dolor est</p>
+    <button onclick="">Setup CSS-form</button>
     <form id="css_form" action="">
       <label for="text_color">Text color</label>
       <input name="text_color" type="color">
