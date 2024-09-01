@@ -313,13 +313,19 @@
     function createNextState(){
       const cellsToChange = [];
       for (const cell in game_state){
-        let cell_coords = cell.split('_');
+        const cell_coords = cell.split('_');
         if (game_state[cell] != isAlive(game_state[cell], checkAdjacent(getAdjacent(cell_coords[0], cell_coords[1], height - 1, width - 1)))){
           cellsToChange.push(cell);
         }
       }
       for (const cell of cellsToChange){
         game_state[cell] = !(game_state[cell]);
+        const cell_el = document.getElementById(cell);
+        if (cell_el.class == 'alive'){
+          cell_el.class = 'dead';
+        } else {
+          cell_el.class = 'alive';
+        }
       }
     }
     
@@ -340,6 +346,7 @@
         for (let j = 0; j < width; j++){
           let cell = document.createElement("td");
           cell.id = `${i}_${j}`;
+          cell.class = 'dead';
           row.appendChild(cell);
           game_state[`${i}_${j}`] = 0;
         }
