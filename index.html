@@ -323,8 +323,8 @@
       }
     }
 
-    function handleCellClick(){
-      changeCell(this.id);
+    function handleCellClick(e){
+      changeCell(e.target.id);
     }
 
     function createBoard(el_id){
