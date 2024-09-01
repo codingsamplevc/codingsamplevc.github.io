@@ -30,6 +30,8 @@ table#gol_board {
 
 table#gol_board td {
   border: none;
+  width: 30px;
+  height: 30px;
 }
 
 td.alive {
