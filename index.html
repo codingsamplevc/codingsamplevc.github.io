@@ -340,7 +340,7 @@
           cell.id = `${i}_${j}`;
           cell.class = 'dead';
           row.appendChild(cell);
-          cell.addEventListener("click", getCellElement);
+          cell.addEventListener("click", handleCellClick);
           game_state[`${i}_${j}`] = 0;
         }
         board.appendChild(row);
