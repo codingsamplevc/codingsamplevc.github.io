@@ -294,7 +294,7 @@
       else { return adjacent_number == 3; }
     }
     
-    function createNextState(){
+    function advanceGOL(){
       const cellsToChange = [];
       for (const cell in game_state){
         const cell_coords = cell.split('_');
@@ -348,6 +348,11 @@
       }
       const container = document.getElementById(el_id);
       container.appendChild(board);
+
+      const advance_btn = document.createElement("button");
+      advance_btn.innerHTML = "Advance";
+      advance_btn.addEventListener("click", advanceGOL);
+      container.appendChild(advance_btn);
     }
     
   </script>
