@@ -2,6 +2,7 @@ p {
   font-size: 1.5em;
 }
 table {
+  margin: 20px;
   border: 4px solid;
   border-collapse: collapse;
   table-layout: fixed;
