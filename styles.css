@@ -27,7 +27,7 @@ table#gol_board {
   
 }
 
-table#gol_board > td {
+table#gol_board td {
   border: none;
 }
 
