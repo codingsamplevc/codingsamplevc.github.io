@@ -250,36 +250,30 @@
     function getAdjacent(x_idx, y_idx, x_idx_max, y_idx_max){
       if (x_idx_max != 0 && y_idx_max != 0){
         const adjacent = [];
-        let a = '';
-        let b = '';
+        const x = [x_idx];
+        const y = [y_idx];
         if (x_idx > 0){
-          a += 'u';
+          x.push(x_idx - 1);
         }
         if (x_idx < x_idx_max){
-          b += 'd';
+          x.push(x_idx + 1);
         }
         if (y_idx > 0){
-          a += 'l';
-          b += 'l';
+          y.push(y_idx - 1);
         }
         if (y_idx < y_idx_max){
-          a += 'r';
-          b += 'r';
+          y.push(y_idx + 1);
         }
-        if (a.length == 3){
-          adjacent.push(
-            [`${x_idx - 1}_${y_idx - 1}`,
-              `${x_idx - 1}_${y_idx}`,
-              `${x_idx - 1}_${y_idx + 1}`,
-              `${x_idx}_${y_idx - 1}`,
-              `${x_idx}_${y_idx + 1}`]
-          );
-          if (b.length == 3){
-            adjacent.push(
-              [`${}_${}`]
-            );
+
+        for (const x_coord of x){
+          for (const y_coord of y){
+            if (x_coord != x_idx || y_coord != y_idx){
+              adjacent.push(`${x_coord}_${y_coord}`);
+            }
           }
-        } else if (){}
+        }
+
+        
       }
     }
     
