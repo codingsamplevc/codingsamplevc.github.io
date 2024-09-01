@@ -280,13 +280,13 @@
     }
     
     function checkAdjacent(adjacent){
-      let alive = 0;
+      let adjacent_living = 0;
       for (const cell_id of adjacent){
         if (game_state[cell_id]){
-          alive++;
+          adjacent_living++;
         }
       }
-      return alive;
+      return adjacent_living;
     }
 
     function isAlive(currently_alive, adjacent_number){
@@ -346,7 +346,11 @@
         }
         board.appendChild(row);
       }
+
+      const gol_desc = document.createElement("p");
+      gol_desc.innerHTML = "Click on the board to flip cells. Click the 'Advance' button to simulate a turn/cycle. Keep clicking to see how your setup turns out.";
       const container = document.getElementById(el_id);
+      container.appendChild(gol_desc);
       container.appendChild(board);
 
       const advance_btn = document.createElement("button");
