@@ -20,3 +20,11 @@ form {
   flex-direction: column;
   align-items: flex-start;
 }
+
+td.alive {
+  background-color: black;
+}
+
+td.dead {
+  background-color: white;
+}
