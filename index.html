@@ -245,6 +245,8 @@
     ////////////////////////
     // JavaScript example 3
 
+    const game_state = {};
+
     
     
     function getAdjacent(x_idx, y_idx, x_idx_max, y_idx_max){
@@ -279,7 +281,7 @@
 
     function getCellValue(cell_id){
       const cell = document.getElementById(cell_id);
-      return cell.value;
+      return cell.innerHTML;
     }
     
     function checkAdjacent(adjacent){
@@ -303,6 +305,28 @@
     function GameOfLife(){
       // 
     }
+
+
+
+    function createBoard(el_id, x_len, y_len){
+      if (document.getElementById("gol_board")){ return; }
+      
+      const board = document.createElement("table");
+      board.id = "gol_board";
+      
+      for (let i = 0; i < x_len; i++){
+        let row = document.createElement("tr");
+        for (let j = 0; j < y_len; j++){
+          let cell = document.createElement("td");
+          cell.id = `${i}_${j}`;
+          row.appendChild(cell);
+        }
+        board.appendChild(row);
+      }
+      const container = document.getElementById(el_id);
+      container.appendChild(board);
+    }
+    
   </script>
 </head>
 <body>
@@ -320,11 +344,12 @@
     <button onclick="setup_css_form('js_2')">Setup CSS-form</button>
     <!-- JavaScript example 2: Interactive CSS -->
     <p>Interactive CSS style form</p>
-    <p id="css_style">Change the text's appearance through a form.</p>
+    <p id="css_style">Change the appearance of this text through a form.</p>
   </div>
   <hr />
   <div id="js_3">
-    <p>3</p>
+    <p>Wayne's 'Game Of Life'</p>
+    <button onclick="createBoard('js_3', 5, 5)">Create 'Game Of Life board'</button>
   </div>
 </body>
 </html>
