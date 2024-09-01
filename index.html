@@ -276,11 +276,32 @@
         return adjacent;
       }
     }
+
+    function getCellValue(cell_id){
+      const cell = document.getElementById(cell_id);
+      return cell.value;
+    }
     
-    function checkAdjacent(){}
+    function checkAdjacent(adjacent){
+      let alive = 0;
+      for (const cell_id of adjacent){
+        if (getCellValue(cell_id) == 'alive'){
+          alive++;
+        }
+      }
+      return alive;
+    }
+
+    function getCurrentState(){
+      // 
+    }
+
+    function createNextState(){
+      // 
+    }
     
     function GameOfLife(){
-      
+      // 
     }
   </script>
 </head>
