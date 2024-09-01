@@ -21,6 +21,16 @@ form {
   align-items: flex-start;
 }
 
+table#gol_board {
+  border: 2px solid;
+  border-collapse: collapse;
+  
+}
+
+table#gol_board > td {
+  border-style: none;
+}
+
 td.alive {
   background-color: black;
 }
