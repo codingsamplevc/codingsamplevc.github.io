@@ -28,7 +28,7 @@ table#gol_board {
 }
 
 table#gol_board > td {
-  border-style: none;
+  border: none;
 }
 
 td.alive {
