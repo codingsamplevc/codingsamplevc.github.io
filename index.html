@@ -305,10 +305,10 @@
       for (const cell of cellsToChange){
         game_state[cell] = !(game_state[cell]);
         const cell_el = document.getElementById(cell);
-        if (cell_el.class == 'alive'){
-          cell_el.class = 'dead';
+        if (cell_el.className == 'alive'){
+          cell_el.className = 'dead';
         } else {
-          cell_el.class = 'alive';
+          cell_el.className = 'alive';
         }
       }
     }
@@ -316,10 +316,10 @@
     function changeCell(cell_id){
       game_state[cell_id] = !(game_state[cell_id]);
       const cell = document.getElementById(cell_id);
-      if (cell.class == "alive"){
-        cell.class = "dead";
+      if (cell.className == "alive"){
+        cell.className = "dead";
       } else {
-        cell.class = "alive";
+        cell.className = "alive";
       }
     }
 
@@ -339,7 +339,7 @@
         for (let j = 0; j < width; j++){
           let cell = document.createElement("td");
           cell.id = `${i}_${j}`;
-          cell.class = 'dead';
+          cell.className = "dead";
           row.appendChild(cell);
           cell.addEventListener("click", handleCellClick);
           game_state[`${i}_${j}`] = 0;
