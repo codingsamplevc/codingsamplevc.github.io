@@ -248,14 +248,6 @@
     const game_state = {};
     const height = 5;
     const width = 5;
-
-
-    function isAlive(currently_alive, adjacent_number){
-      if (currently_alive){ return (adjacent_number > 1 && adjacent_number < 4); }
-      else { return adjacent_number == 3; }
-    }
-
-    
     
     function getAdjacent(x_idx, y_idx, x_idx_max, y_idx_max){
       if (x_idx_max != 0 && y_idx_max != 0){
@@ -286,11 +278,6 @@
         return adjacent;
       }
     }
-
-    function getCellValue(cell_id){
-      const cell = document.getElementById(cell_id);
-      return cell.innerHTML;
-    }
     
     function checkAdjacent(adjacent){
       let alive = 0;
@@ -302,19 +289,16 @@
       return alive;
     }
 
-    function getCurrentState(){
-      // 
+    function isAlive(currently_alive, adjacent_number){
+      if (currently_alive){ return (adjacent_number > 1 && adjacent_number < 4); }
+      else { return adjacent_number == 3; }
     }
-
-    function convertIntoCoords(x_y_string){
-      return 
-    }
-
+    
     function createNextState(){
       const cellsToChange = [];
       for (const cell in game_state){
         const cell_coords = cell.split('_');
-        if (game_state[cell] != isAlive(game_state[cell], checkAdjacent(getAdjacent(cell_coords[0], cell_coords[1], height - 1, width - 1)))){
+        if (game_state[cell] != isAlive(game_state[cell], checkAdjacent(getAdjacent(parseInt(cell_coords[0]), parseInt(cell_coords[1]), height - 1, width - 1)))){
           cellsToChange.push(cell);
         }
       }
@@ -328,12 +312,20 @@
         }
       }
     }
-    
-    function GameOfLife(){
-      // 
+
+    function changeCell(cell_id){
+      game_state[cell_id] = !(game_state[cell_id]);
+      const cell = document.getElementById(cell_id);
+      if (cell.class == "alive"){
+        cell.class = "dead";
+      } else {
+        cell.class = "alive";
+      }
     }
 
-
+    function handleCellClick(){
+      changeCell(this.id);
+    }
 
     function createBoard(el_id){
       if (document.getElementById("gol_board")){ return; }
@@ -348,6 +340,7 @@
           cell.id = `${i}_${j}`;
           cell.class = 'dead';
           row.appendChild(cell);
+          cell.addEventListener("click", getCellElement);
           game_state[`${i}_${j}`] = 0;
         }
         board.appendChild(row);
