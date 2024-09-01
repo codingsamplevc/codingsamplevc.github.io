@@ -23,8 +23,8 @@ form {
 
 table#gol_board {
   border: 1px solid;
-  border-collapse: collapse;
-  
+  width: auto;
+  height: auto;
 }
 
 table#gol_board td {
