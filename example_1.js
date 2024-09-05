@@ -77,7 +77,20 @@
       }
     }
 
-    
+    function reset_TTT(table_id){
+      if (!document.getElementById(table_id)) { return; }
+      for (let i = 0; i < 3; i++){
+        for (let j = 0; j < 3; j++){
+          const cell = document.getElementById(`${ttt.prefix}_${i}_${j}`);
+          cell.innerHTML = ' ';
+        }
+      }
+      ttt.playerTurn = 1;
+      const gameStatusEl = document.getElementById("ttt_game_status");
+      gameStatusEl.innerHTML = '';
+    }
+
+
     function create_TicTacToeTable(container_id){
       // Function that creates an HTML table that can be used to play TicTacToe
         
@@ -115,17 +128,8 @@
         gameStatusEl.id = "ttt_game_status";
         tableContainer.appendChild(gameStatusEl);
       }
-    }
-    
-    function resetTicTacToe(table_id){
-      if (!document.getElementById(table_id)) { return; }
-      for (let i = 0; i < 3; i++){
-        for (let j = 0; j < 3; j++){
-          const cell = document.getElementById(`${ttt.prefix}_${i}_${j}`);
-          cell.innerHTML = ' ';
-        }
-      }
-      ttt.playerTurn = 1;
-      const gameStatusEl = document.getElementById("ttt_game_status");
-      gameStatusEl.innerHTML = '';
+
+      const creation_button = this;
+      creation_button.onclick = `reset_TTT('${ttt.table_id}')`;
+      creation_button.innerHTML = "Reset board";
     }
