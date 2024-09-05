@@ -87,7 +87,7 @@ const GoL = {
   },
   startAutoSimulation: function (){
     if (!GoL.interval_id){
-      GoL.interval_id = setInterval(GoL.advance, 2000);
+      GoL.interval_id = setInterval(GoL.advance, 1500);
       const auto_btn = document.getElementById(GoL.auto_btn_id);
       auto_btn.setAttribute("onclick", "GoL.stopAutoSimulation()");
     }
