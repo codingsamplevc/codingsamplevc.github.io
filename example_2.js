@@ -3,6 +3,7 @@
   const css = {
     demo_id: "css_demo_text",
     form_id: "css_form",
+    rules_id: "css_rules",
     convert: function (rules_obj){
       let rules_code = `_ {\n`;
       for (const prop in rules_obj){
@@ -22,7 +23,7 @@
           elStyle.setProperty(prop, changes[prop]);
         }
         const rules = css.convert(changes);
-        const codeblock = document.getElementById("css_demo_text");
+        const codeblock = document.getElementById(css.rules_id);
         codeblock.innerHTML = rules;
       }
   
