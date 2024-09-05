@@ -1,4 +1,4 @@
-    // JavaScript example 2: Interactive CSS options
+    // JavaScript example 2: Interactive CSS style options
 
   const css = {
     demo_id: "css_demo_text",
