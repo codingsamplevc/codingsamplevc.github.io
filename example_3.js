@@ -53,7 +53,7 @@ const GoL = {
     const cellsToChange = [];
     for (const cell in GoL.game_state){
       const cell_coords = cell.split('_');
-      if (GoL.game_state[cell] != isAlive(game_state[cell], checkAdjacent(getAdjacent(parseInt(cell_coords[0]), parseInt(cell_coords[1]), height - 1, width - 1)))){
+      if (GoL.game_state[cell] != GoL.isAlive(GoL.game_state[cell], GoL.get_AdjacentLiving(GoL.get_Adjacent(parseInt(cell_coords[0]), parseInt(cell_coords[1]), GoL.height - 1, GoL.width - 1)))){
         cellsToChange.push(cell);
       }
     }
