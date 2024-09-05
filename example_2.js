@@ -107,7 +107,7 @@ const css = {
     const code_block = document.createElement("code");
     code_block.id = "css_rules";
     code_block.style.display = "block";
-    code_block.style.whiteSpace = "prewrap";
+    code_block.style.whiteSpace = "pre";
     container.appendChild(code_block);
   }
 };
