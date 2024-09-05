@@ -24,7 +24,8 @@
         }
         const rules = css.convert(changes);
         const codeblock = document.getElementById(css.rules_id);
-        codeblock.style = "whitespace: prewrap";
+        codeblock.style.display = "block";
+        codeblock.style.whitespace = "prewrap";
         codeblock.innerHTML = rules;
       }
   
