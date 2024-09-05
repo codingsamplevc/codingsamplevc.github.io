@@ -122,9 +122,11 @@ const GoL = {
     advance_btn.addEventListener("click", GoL.advance);
     container.appendChild(advance_btn);
 
-    const auto_simulation = document.createElement("button");
-    auto_simulation.id = GoL.auto_btn_id;
-    auto_simulation.innerHTML = "Start/stop automatic simulation";
+    const auto_simulation_btn = document.createElement("button");
+    auto_simulation_btn.id = GoL.auto_btn_id;
+    auto_simulation_btn.innerHTML = "Start/stop automatic simulation";
+    auto_simulation_btn.setAttribute("onclick", "GoL.startAutoSimulation()");
+    container.appendChild(auto_simulation_btn);
   }
 };
 
