@@ -71,9 +71,13 @@ function chooseCell(){
     const curPlayer = get_CurrentPlayer();
     if (ttt.playerTurn > 4 && checkWinCondition(curPlayer)){
       gameStatusEl.innerHTML = `Player ${curPlayer} won!`;
-      ttt.game_over = !(ttt.game_over);
+      ttt.game_over = 1;
     }
     advanceTurn();
+    if (ttt.playerTurn > 9) {
+      gameStatusEl.innerHTML = `It's a draw!`;
+      ttt.game_over = 1;
+    }
   } else {
     gameStatusEl.innerHTML = 'Cell has already been taken.';
   }
@@ -90,6 +94,7 @@ function reset_TTT(table_id){
   ttt.playerTurn = 1;
   const gameStatusEl = document.getElementById("ttt_game_status");
   gameStatusEl.innerHTML = '';
+  ttt.game_over = 0;
 }
 
 
