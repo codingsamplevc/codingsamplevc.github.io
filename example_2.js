@@ -8,7 +8,7 @@ const css = {
     let rules_code = `_ {\n`;
     for (const prop in rules_obj){
       if (rules_obj[prop]){
-        rules_code += `${prop}: ${rules_obj[prop]};\n`;
+        rules_code += `\t${prop}: ${rules_obj[prop]};\n`;
       }
     }
     rules_code += `}`;
