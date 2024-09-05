@@ -132,6 +132,6 @@
       }
 
       const create_button = document.getElementById(ttt.create_btn_id);
-      create_button.onclick = `reset_TTT('${ttt.table_id}')`;
+      create_button.setAttribute('onclick', `reset_TTT('${ttt.table_id}')`);
       create_button.innerHTML = "Reset board";
     }
