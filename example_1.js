@@ -5,7 +5,8 @@
       players: ['O', 'X'],
       prefix: 'ttt',
       table_id: 'tttTable',
-      game_over: 0
+      game_over: 0,
+      create_btn_id: 'createTTT'
     };
 
     function get_Value(id){
@@ -130,7 +131,7 @@
         tableContainer.appendChild(gameStatusEl);
       }
 
-      // const creation_button = this;
-      this.onclick = `reset_TTT('${ttt.table_id}')`;
-      this.innerHTML = "Reset board";
+      const create_button = document.getElementById(ttt.create_btn_id);
+      create_button.onclick = `reset_TTT('${ttt.table_id}')`;
+      create_button.innerHTML = "Reset board";
     }
