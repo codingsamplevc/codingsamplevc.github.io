@@ -62,9 +62,10 @@
     }
     
     function chooseCell(){
+      if (ttt.game_over) { return; }
       const gameStatusEl = document.getElementById("ttt_game_status");
       gameStatusEl.innerHTML = '';
-      if (this.innerHTML == ' ' && !ttt.game_over){
+      if (this.innerHTML == ' '){
         this.innerHTML = get_CurrentPlayer();
         const curPlayer = get_CurrentPlayer();
         if (ttt.playerTurn > 4 && checkWinCondition(curPlayer)){
@@ -72,7 +73,7 @@
           ttt.game_over = !(ttt.game_over);
         }
         advanceTurn();
-      } else if (!ttt.game_over) {
+      } else {
         gameStatusEl.innerHTML = 'Cell has already been taken.';
       }
     }
