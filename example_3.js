@@ -77,7 +77,7 @@ const GoL = {
     }
   },
   handleCellClick: function (e){
-    changeCell(e.target.id);
+    GoL.flip(e.target.id);
   },
   stopAutoSimulation: function (){
     clearInterval(GoL.interval_id);
