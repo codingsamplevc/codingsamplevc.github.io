@@ -16,10 +16,10 @@ const ttt = {
     let diagL = 0;
     let diagR = 0;
     for (let k = 0; k < 3; k++){
-      if (get_Value(`${ttt.prefix}_${k}_${k}`) == player){
+      if (ttt.get_Value(`${ttt.prefix}_${k}_${k}`) == player){
         diagL++;
       }
-      if (get_Value(`${ttt.prefix}_${k}_${2 - k}`) == player){
+      if (ttt.get_Value(`${ttt.prefix}_${k}_${2 - k}`) == player){
         diagR++;
       }
     }
@@ -33,10 +33,10 @@ const ttt = {
     let vert = 0;
     for (let i = 0; i < 3; i++){
       for (let j = 0; j < 3; j++){
-        if (get_Value(`${ttt.prefix}_${i}_${j}`) == player){
+        if (ttt.get_Value(`${ttt.prefix}_${i}_${j}`) == player){
           horiz++;
         }
-        if (get_Value(`${ttt.prefix}_${j}_${i}`) == player){
+        if (ttt.get_Value(`${ttt.prefix}_${j}_${i}`) == player){
           vert++;
         }
       }
@@ -63,17 +63,17 @@ const ttt = {
     if (this.innerHTML == ' '){
       this.innerHTML = ttt.get_CurrentPlayer();
       const curPlayer = ttt.get_CurrentPlayer();
-      if (ttt.playerTurn > 4 && checkWinCondition(curPlayer)){
-        gameStatusEl.innerHTML = `Player ${curPlayer} won!`;
+      if (ttt.playerTurn > 4 && ttt.checkWinCondition(curPlayer)){
+        game_status_el.innerHTML = `Player ${curPlayer} won!`;
         ttt.game_over = 1;
       }
       ttt.advanceTurn();
       if (ttt.playerTurn > 9) {
-        gameStatusEl.innerHTML = `It's a draw!`;
+        game_status_el.innerHTML = `It's a draw!`;
         ttt.game_over = 1;
       }
     } else {
-      gameStatusEl.innerHTML = 'Cell has already been taken.';
+      game_status_el.innerHTML = 'Cell has already been taken.';
     }
   },
   reset: function (){
