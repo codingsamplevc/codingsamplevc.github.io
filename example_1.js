@@ -67,7 +67,7 @@
       if (this.innerHTML == ' ' && !ttt.game_over){
         this.innerHTML = get_CurrentPlayer();
         const curPlayer = get_CurrentPlayer();
-        if (playerTurn > 4 && checkWinCondition(curPlayer)){
+        if (ttt.playerTurn > 4 && checkWinCondition(curPlayer)){
           gameStatusEl.innerHTML = `Player ${curPlayer} won!`;
           ttt.game_over = !(ttt.game_over);
         }
@@ -129,7 +129,7 @@
         tableContainer.appendChild(gameStatusEl);
       }
 
-      const creation_button = this;
-      creation_button.onclick = `reset_TTT('${ttt.table_id}')`;
-      creation_button.innerHTML = "Reset board";
+      // const creation_button = this;
+      this.onclick = `reset_TTT('${ttt.table_id}')`;
+      this.innerHTML = "Reset board";
     }
