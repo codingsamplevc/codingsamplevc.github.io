@@ -5,136 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="styles.css">
   <title>My page</title>
-  <script>
-    ////////////////////////
-    // JavaScript example 1
-    let playerTurn = 1;
-    const players = ['O','X'];
-    const cell_id_prefix = 'ttt';
-
-    function getCellValue(id){
-      return document.getElementById(id).innerHTML;
-    }
-    
-    function checkWinCondition(player){
-      
-      let diagL = 0;
-      let diagR = 0;
-      for (let k = 0; k < 3; k++){
-        if (getCellValue(`${cell_id_prefix}_${k}_${k}`) == player){
-          diagL++;
-        }
-        if (getCellValue(`${cell_id_prefix}_${k}_${2 - k}`) == player){
-          diagR++;
-        }
-      }
-      
-      if (diagL == 3 || diagR == 3){
-        return true;
-      }
-      
-      
-      let horiz = 0;
-      let vert = 0;
-      for (let i = 0; i < 3; i++){
-        for (let j = 0; j < 3; j++){
-          if (getCellValue(`${cell_id_prefix}_${i}_${j}`) == player){
-            horiz++;
-          }
-          if (getCellValue(`${cell_id_prefix}_${j}_${i}`) == player){
-            vert++;
-          }
-        }
-        
-        if (horiz == 3 || vert == 3){
-          return true;
-        }
-        horiz = 0;
-        vert = 0;
-      }
-      
-      return false;
-    }
-    
-    function getPlayerTurn(){
-      return players[playerTurn % 2];
-    }
-
-    function advancePlayerTurn(){
-      playerTurn++;
-    }
-
-    function resetPlayerTurn(){
-      playerTurn = 1;
-    }
-    
-    function chooseCell(){
-      if (!document.getElementById("ttt_game_status").innerHTML && this.innerHTML == ' '){
-        this.innerHTML = getPlayerTurn();
-        const curPlayer = getPlayerTurn();
-        if (playerTurn > 4 && checkWinCondition(curPlayer)){
-          const gameStatusEl = document.getElementById("ttt_game_status");
-          gameStatusEl.innerHTML = `Player ${curPlayer} won!`;
-        }
-        advancePlayerTurn();
-      } else {
-        
-      }
-    }
-
-    
-    function createTicTacToeTable(el_id){
-      // Function that creates an HTML table that can be used to play TicTacToe
-        
-      function returnTableCell(id){
-        const tCell = document.createElement("td");
-        tCell.id = id;
-        tCell.onclick = chooseCell;
-        tCell.innerHTML = ' ';
-        return tCell;
-      }
-      
-      
-      function returnTableRow(i){
-        const tRow = document.createElement("tr");
-        for (let j = 0; j < 3; j++){
-          tRow.appendChild(returnTableCell(`${cell_id_prefix}_${i}_${j}`));
-        }
-        return tRow;
-      }
-      
-      const tableId = "tttTable";
-      if (!document.getElementById(tableId)){
-        const tableEl = document.createElement("table");
-        tableEl.id = tableId;
-        
-        for (let i = 0; i < 3; i++){
-          const tRow = returnTableRow(i);
-          tableEl.appendChild(tRow);
-        }
-        
-        const tableContainer = document.getElementById(el_id);
-        tableContainer.appendChild(tableEl);
-
-        const gameStatusEl = document.createElement("p");
-        gameStatusEl.id = "ttt_game_status";
-        tableContainer.appendChild(gameStatusEl);
-      }
-    }
-    
-    function resetTicTacToe(el_id){
-      if (!document.getElementById(el_id)) { return; }
-      for (let i = 0; i < 3; i++){
-        for (let j = 0; j < 3; j++){
-          const cell = document.getElementById(`${cell_id_prefix}_${i}_${j}`);
-          cell.innerHTML = ' ';
-        }
-      }
-      resetPlayerTurn();
-      const gameStatusEl = document.getElementById("ttt_game_status");
-      gameStatusEl.innerHTML = '';
-    }
-  </script>
+  <script src="example_1.js"></script>
   <script>
     //////////////////////////
     // JavaScript example 2
@@ -367,7 +238,7 @@
   <hr />
   <div id="js_1">
     <button type="button" onclick="createTicTacToeTable('js_1')">Create table</button>
-    <button type="button" onclick="resetTicTacToe('tttTable')">Reset table</button>
+<!--     <button type="button" onclick="resetTicTacToe('tttTable')">Reset table</button> -->
     <!-- JavaScript example 1: TicTacToe game -->
     <p>TicTacToe board</p>
   </div>
