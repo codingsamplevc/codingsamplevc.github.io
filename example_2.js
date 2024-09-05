@@ -3,7 +3,13 @@
 const css = {
   demo_id: "css_demo_text",
   form_id: "css_form",
+  change_id: "css_submit",
   rules_id: "css_rules",
+  styles: [
+      [{desc: "Text color", name: "color", type: "color"}, {}],
+      [{desc: "Font size", name: "font-size", type: "number"}, {min: 6, max: 50, value: 16}],
+      [{desc: "Font (family)", name: "font-family", type: "text"}, {"font-family": ''}]
+    ],
   convert: function (rules_obj){
     let rules_code = `_ {\n`;
     for (const prop in rules_obj){
@@ -14,8 +20,8 @@ const css = {
     rules_code += `}`;
     return rules_code;
   },
-  modify: function (demo_text_id, changes, removes){
-    const demo_text_el = document.getElementById(demo_text_id);
+  modify: function (changes, removes){
+    const demo_text_el = document.getElementById(css.demo_id);
     const demo_style = demo_text_el.style;
 
     if (Object.keys(changes).length > 0){
@@ -50,7 +56,7 @@ const css = {
       }
     }
     const removes_obj = {};
-    css.modify("css_demo_text", changes_obj, removes_obj);
+    css.modify(changes_obj, removes_obj);
   },
   setup: function (container_id){
 
@@ -58,16 +64,17 @@ const css = {
     
     const form = document.createElement("form");
     form.id = css.form_id;
-    const rules = [
-      [{desc: "Text color", name: "color", type: "color"}, {}],
-      [{desc: "Font size", name: "font-size", type: "number"}, {min: 6, max: 50, value: 16}],
-      [{desc: "Font (family)", name: "font-family", type: "text"}, {"font-family": ''}]
-    ];
+    
+    // const rules = [
+    //   [{desc: "Text color", name: "color", type: "color"}, {}],
+    //   [{desc: "Font size", name: "font-size", type: "number"}, {min: 6, max: 50, value: 16}],
+    //   [{desc: "Font (family)", name: "font-family", type: "text"}, {"font-family": ''}]
+    // ];
 
-    for (const rule of rules){
+    for (const rule of css.styles){
       const label = document.createElement("label");
-      label.setAttribute("for", rule[0].name);
       label.innerHTML = rule[0].desc;
+      label.setAttribute("for", rule[0].name);
       form.appendChild(label);
       
       const input = document.createElement("input");
@@ -95,7 +102,7 @@ const css = {
     container.appendChild(br_tag);
 
     const change_style_btn = document.createElement("button");
-    change_style_btn.id = "css_submit";
+    change_style_btn.id = css.change_id;
     change_style_btn.innerHTML = "Change style";
     container.appendChild(change_style_btn);
     change_style_btn.addEventListener("click", css.handleChange);
@@ -105,7 +112,7 @@ const css = {
     container.appendChild(code_desc);
 
     const code_block = document.createElement("code");
-    code_block.id = "css_rules";
+    code_block.id = css.rules_id;
     code_block.style.display = "block";
     code_block.style.whiteSpace = "pre";
     container.appendChild(code_block);
