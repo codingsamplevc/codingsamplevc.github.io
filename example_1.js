@@ -12,7 +12,6 @@ const ttt = {
     return document.getElementById(id).innerHTML;
   },
   checkWinCondition: function (player){
-    
     let diagL = 0;
     let diagR = 0;
     for (let k = 0; k < 3; k++){
@@ -27,7 +26,6 @@ const ttt = {
     if (diagL == 3 || diagR == 3){
       return true;
     }
-    
     
     let horiz = 0;
     let vert = 0;
@@ -98,7 +96,6 @@ const ttt = {
       tCell.innerHTML = ' ';
       return tCell;
     }
-    
     
     function returnTableRow(i){
       const tRow = document.createElement("tr");
