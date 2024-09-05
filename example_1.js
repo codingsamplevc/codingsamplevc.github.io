@@ -54,7 +54,7 @@
 
     
     function get_CurrentPlayer(){
-      return ttt.players[playerTurn % 2];
+      return ttt.players[ttt.playerTurn % 2];
     }
 
     function advanceTurn(){
