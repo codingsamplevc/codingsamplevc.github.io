@@ -1,5 +1,5 @@
 
-// JavaScript example 3
+// JavaScript example 3: Conway's 'Game of Life'
 
 const GoL = {
   interval_id: null,
