@@ -98,12 +98,17 @@ const markup = {
     const outer = document.getElementById(outer_container_id);
     
     if (!document.getElementById(markup.edit_window_id)){
-      const editor = document.createElement('div');
-      editor.id = markup.editor_window_id;
+      const editor_window = document.createElement('form');
+      editor_window.id = markup.editor_window_id;
+      const form_fs = document.createElement('fieldset');
+      editor_window.appendChild(form_fs);
+      const fs_legend = document.createElement('legend');
+      fs_legend.innerHTML = 'Markup Editing Window';
+      form_fs.appendChild(fs_legend);
 
       const desc = document.createElement('p');
       desc.innerHTML = "Press 'Select element' to choose which element to insert in relation to.";
-      editor.appendChild(desc);
+      form_fs.appendChild(desc);
 
       const sel_el_btn = document.createElement('button');
       sel_el_btn.innerHTML = 'Select element';
@@ -111,36 +116,36 @@ const markup = {
         // Make elements in container selectable
         // Maybe: change inline style of container so that hovered over elements get a border
       }
-      editor.appendChild(sel_el_btn);
+      form_fs.appendChild(sel_el_btn);
       
       const ins_after_btn = document.createElement('button');
       ins_after_btn.onclick = markup.insertAfter;
       ins_after_btn.innerHTML = 'Insert after';
-      editor.appendChild(ins_after_btn);
+      form_fs.appendChild(ins_after_btn);
 
       const el_type_label = document.createElement('label');
-      el_type_label.for = 'type';
+      el_type_label.for = 'MU_type';
       el_type_label.innerHTML = 'Type of element:';
       const el_type_input = document.createElement('input');
       el_type_input.id = 'MU_type';
       el_type_input.type = 'text';
-      el_type_input.name = 'type';
+      el_type_input.name = 'MU_type';
       el_type_input.value = '';
-      editor.appendChild(el_type_label);
-      editor.appendChild(el_type_input);
+      form_fs.appendChild(el_type_label);
+      form_fs.appendChild(el_type_input);
       
       const el_inner_html_label = document.createElement('label');
-      el_inner_html_label.for = 'innerhtml';
+      el_inner_html_label.for = 'MU_inner_html';
       el_inner_html_label.innerHTML = 'innerHTML of element:';
       const el_inner_html_input = document.createElement('input');
       el_inner_html_input.id = 'MU_inner_html';
       el_inner_html_input.type = 'text';
-      el_inner_html_input.name = 'innerhtml';
+      el_inner_html_input.name = 'MU_inner_html';
       el_inner_html_input.value = '';
-      editor.appendChild(el_inner_html_label);
-      editor.appendChild(el_inner_html_input);
+      form_fs.appendChild(el_inner_html_label);
+      form_fs.appendChild(el_inner_html_input);
       
-      outer.appendChild(editor);
+      outer.appendChild(editor_window);
 
       const el_br = document.createElement('br');
       outer.appendChild(el_br);
