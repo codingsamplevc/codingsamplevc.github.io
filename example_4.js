@@ -2,6 +2,7 @@
 // JavaScript example 4: HTML-markup creator and editor
 
 const markup = {
+  edit_window_id: 'MU_editor',
   inner_container_id: 'MU_container',
   validElements: {
     a: 1,
@@ -78,8 +79,11 @@ const markup = {
   appendElement: function (el, parent){
     parent.appendChild(el);
   },
-  returnClickedElement: function (el){
-    
+  insertAfter: function (target, el){
+    target.after(el);
+  },
+  insertBefore: function (target, el){
+    target.before(el);
   },
   clickListener: function (e){
     console.log(e.type);
@@ -87,13 +91,36 @@ const markup = {
   },
   setupContainer: function (outer_container_id){
     const outer = document.getElementById(outer_container_id);
-    if (document.getElementById(markup.inner_container_id)){
-      return;
+    
+    if (!document.getElementById(markup.edit_window_id)){
+      const editor = document.createElement('div');
+      editor.id = markup.editor_window_id;
+
+      const desc = document.createElement('p');
+      desc.innerHTML = "Press 'Select element' to choose which element to insert in relation to.";
+      editor.appendChild(desc);
+
+      const sel_el_btn = document.createElement('button');
+      sel_el_btn.innerHTML = 'Select element';
+      sel_el_btn.onclick = function (){
+        // Make elements in container selectable
+        // Maybe: change inline style of container so that hovered over elements get a border
+      }
+      editor.appendChild(sel_el_btn);
+      
+      const ins_after_btn = document.createElement('button');
+      ins_after_btn.onclick = markup.insertAfter;
+      ins_after_btn.innerHTML = 'Insert after';
+      editor.appendChild(ins_after_btn);
+      
+      outer.appendChild(editor);
     }
-    const inner = document.createElement('div');
-    inner.id = markup.inner_container_id;
-    inner.addEventListener('click', markup.clickListener);
-    outer.appendChild(inner);
+    if (!document.getElementById(markup.inner_container_id)){
+      const inner = document.createElement('div');
+      inner.id = markup.inner_container_id;
+      inner.addEventListener('click', markup.clickListener);
+      outer.appendChild(inner);
+    }
   },
   isInsideInner: function (el){
     const inner = document.getElementById(markup.inner_container_id);
