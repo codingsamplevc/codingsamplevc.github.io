@@ -2,6 +2,7 @@
 // JavaScript example 4: HTML-markup creator and editor
 
 const markup = {
+  inner_container_id: ,
   validElements: {
     a: 1,
     div: 1,
@@ -59,13 +60,13 @@ const markup = {
     wbr: 0,
   },
   createElement: function (elName, props){
-    if (elName in markup.validElements) {
+    if (elName in markup.validElements){
       let el = document.createElement(elName);
-      if ('innerHTML' in props) {
+      if ('innerHTML' in props){
         el.innerHTML = props.innerHTML;
       }
-      if ('attr' in props) {
-        for (const [name, value] of Object.entries(props)) {
+      if ('attr' in props){
+        for (const [name, value] of Object.entries(props)){
           el.setAttribute(name, value);
         }
       }
@@ -74,4 +75,28 @@ const markup = {
       return;
     }
   },
+  appendElement: function (el, parent){
+    parent.appendChild(el);
+  },
+  returnClickedElement: function (el){
+    
+  },
+  clickListener: function (e){
+    console.log(e.type);
+    e.stopPropagation();
+  },
+  setupContainer: function (outer_container_id){
+    const outer = document.getElementById(outer_container_id);
+    const inner = document.createElement('div');
+    inner.id = markup.inner_container_id;
+    inner.addEventListener('click', markup.clickListener);
+    outer.appendChild(inner);
+  },
+  isInsideInner: function (el){
+    const inner = document.getElementById(markup.inner_container_id);
+    if (inner && !(inner.isSameNode(el))){
+      return inner.contains(el);
+    }
+  },
+  
 };
