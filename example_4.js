@@ -1,7 +1,7 @@
 
 // JavaScript example 4: HTML-markup creator and editor
 
-const a = {
+const markup = {
   validElements: {
     a: 1,
     div: 1,
@@ -58,16 +58,20 @@ const a = {
     br: 0,
     wbr: 0,
   },
-  a: 0,
-  b: function (){
-    
-  },
   createElement: function (elName, props){
-    if (elName in js4) {
+    if (elName in markup.validElements) {
       let el = document.createElement(elName);
+      if ('innerHTML' in props) {
+        el.innerHTML = props.innerHTML;
+      }
+      if ('attr' in props) {
+        for (const [name, value] of Object.entries(props)) {
+          el.setAttribute(name, value);
+        }
+      }
+      return el;
     } else {
       return;
     }
-    
   },
 };
