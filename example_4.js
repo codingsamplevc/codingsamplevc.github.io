@@ -2,7 +2,7 @@
 // JavaScript example 4: HTML-markup creator and editor
 
 const markup = {
-  inner_container_id: ,
+  inner_container_id: 'MU_container',
   validElements: {
     a: 1,
     div: 1,
@@ -97,6 +97,7 @@ const markup = {
     if (inner && !(inner.isSameNode(el))){
       return inner.contains(el);
     }
+    return false;
   },
   
 };
