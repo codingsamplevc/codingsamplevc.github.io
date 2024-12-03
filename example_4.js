@@ -87,6 +87,9 @@ const markup = {
   },
   setupContainer: function (outer_container_id){
     const outer = document.getElementById(outer_container_id);
+    if (document.getElementById(markup.inner_container_id)){
+      return;
+    }
     const inner = document.createElement('div');
     inner.id = markup.inner_container_id;
     inner.addEventListener('click', markup.clickListener);
