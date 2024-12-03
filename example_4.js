@@ -76,6 +76,11 @@ const markup = {
       return;
     }
   },
+  getEdits: function (){
+    // const edit_window = document.getElementById(markup.edit_window_id);
+    const el_type = document.getElementById('MU_type').value;
+    const inner_html = document.getElementById('MU_inner_html').value;
+  },
   appendElement: function (el, parent){
     parent.appendChild(el);
   },
@@ -112,6 +117,28 @@ const markup = {
       ins_after_btn.onclick = markup.insertAfter;
       ins_after_btn.innerHTML = 'Insert after';
       editor.appendChild(ins_after_btn);
+
+      const el_type_input = document.createElement('input');
+      el_type_input.id = 'MU_type';
+      el_type_input.type = 'text';
+      el_type_input.name = 'type';
+      el_type_input.value = '';
+      const el_type_label = document.createElement('label');
+      el_type_label.for = el_type_input.name;
+      el_type_label.innerHTML = 'Type of element:';
+      editor.appendChild(el_type_input);
+      editor.appendChild(el_type_label);
+      
+      const el_inner_html_input = document.createElement('input');
+      el_inner_html_input.id = 'MU_inner_html';
+      el_inner_html_input.type = 'text';
+      el_inner_html_input.name = 'innerhtml';
+      el_inner_html_input.value = '';
+      const el_inner_html_label = document.createElement('label');
+      el_inner_html_label.for = el_inner_html_input.name;
+      el_inner_html_label.innerHTML = 'Type of element:';
+      editor.appendChild(el_inner_html_input);
+      editor.appendChild(el_inner_html_label);
       
       outer.appendChild(editor);
     }
