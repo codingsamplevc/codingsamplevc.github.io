@@ -41,3 +41,9 @@ td.alive {
 td.dead {
   background-color: white;
 }
+
+
+#MU_container {
+  border: 1px solid;
+  outline: 6px solid gray;
+}
