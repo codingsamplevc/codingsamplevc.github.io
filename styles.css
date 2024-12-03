@@ -43,6 +43,12 @@ td.dead {
 }
 
 
+#js_4 form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 #MU_container {
   outline: 10px solid gray;
 }
