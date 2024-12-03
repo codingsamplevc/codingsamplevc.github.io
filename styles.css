@@ -16,7 +16,7 @@ td {
   width: 40px;
   height: 40px;
 }
-form {
+form, fieldset {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -43,10 +43,8 @@ td.dead {
 }
 
 
-#js_4 form, #js_4 form fieldset {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+#js_4 form input {
+  margin: 8px;
 }
 
 #MU_container {
