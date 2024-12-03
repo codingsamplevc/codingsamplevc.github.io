@@ -43,8 +43,8 @@ td.dead {
 }
 
 
-#js_4 form input {
-  margin: 8px;
+#js_4 form input, #js_4 form button {
+  margin: 2px;
 }
 
 #MU_container {
