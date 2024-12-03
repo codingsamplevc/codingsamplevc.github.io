@@ -44,6 +44,17 @@ td.dead {
 
 
 #MU_container {
-  border: 1px solid;
-  outline: 6px solid gray;
+  outline: 10px solid gray;
+}
+
+#MU_container #MU_selected {
+  color: lightblue;
+  background-color: darkblue;
+  opacity: 0.5;
+}
+
+#MU_container:hover {
+  color: blue;
+  background-color: darkblue;
+  opacity: 1;
 }
