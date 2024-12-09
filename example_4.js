@@ -96,7 +96,7 @@ const markup = {
   },
   editor: function (){
     const editor = document.createElement('form');
-    editor.onsubmit = "return false";
+    editor.onsubmit = function (){ return false }();
     editor.id = markup.editor_id;
     
     const form_fs = document.createElement('fieldset');
