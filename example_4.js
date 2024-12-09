@@ -96,7 +96,6 @@ const markup = {
   },
   editor: function (){
     const editor = document.createElement('form');
-    // editor.onsubmit = function (){return false};
     editor.id = markup.editor_id;
     editor.addEventListener('submit', (e) => {e.preventDefault()});
     
