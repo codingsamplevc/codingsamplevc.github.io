@@ -97,6 +97,7 @@ const markup = {
   editor: function (){
     const editor = document.createElement('form');
     editor.id = markup.editor_id;
+    editor.onsubmit = 'return';
     const form_fs = document.createElement('fieldset');
     editor.appendChild(form_fs);
     const fs_legend = document.createElement('legend');
