@@ -114,7 +114,7 @@ const markup = {
     sel_el_btn.onclick = function (){
       // Make elements in container selectable
       // Maybe: change inline style of container so that hovered over elements get a border
-    }
+    };
     form_fs.appendChild(sel_el_btn);
 
     // Button that inserts new element after selected element
@@ -140,7 +140,7 @@ const markup = {
     const type_select = document.createElement('select');
     type_select.name = 'MU_type';
     type_select.id = 'MU_type';
-    for (const tagName in Object.keys(markup.validElements)){
+    for (const tagName in Object.keys(markup.ValidElements)){
       const option = document.createElement('option');
       option.value = tagName;
       option.innerHTML = tagName;
