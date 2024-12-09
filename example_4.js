@@ -2,9 +2,10 @@
 // JavaScript example 4: HTML-markup creator and editor
 
 const markup = {
-  edit_window_id: 'MU_editor',
+  selected: null,
+  editor_id: 'MU_editor',
   inner_container_id: 'MU_container',
-  validElements: {
+  ValidElements: {
     a: 1,
     div: 1,
     
@@ -61,7 +62,7 @@ const markup = {
     wbr: 0,
   },
   createElement: function (elName, props){
-    if (elName in markup.validElements){
+    if (elName in markup.ValidElements){
       let el = document.createElement(elName);
       if ('innerHTML' in props){
         el.innerHTML = props.innerHTML;
@@ -77,7 +78,7 @@ const markup = {
     }
   },
   getEdits: function (){
-    // const edit_window = document.getElementById(markup.edit_window_id);
+    // const edit_window = document.getElementById(markup.editor_id);
     const el_type = document.getElementById('MU_type').value;
     const inner_html = document.getElementById('MU_inner_html').value;
   },
@@ -94,58 +95,130 @@ const markup = {
     console.log(e.type);
     e.stopPropagation();
   },
+  editor: function (){
+    const editor = document.createElement('form');
+    editor.id = markup.editor_id;
+    const form_fs = document.createElement('fieldset');
+    editor.appendChild(form_fs);
+    const fs_legend = document.createElement('legend');
+    fs_legend.innerHTML = 'Markup Editing Window';
+    form_fs.appendChild(fs_legend);
+
+    const desc = document.createElement('p');
+    desc.innerHTML = "Press 'Select element' to choose which element to insert in relation to.";
+    form_fs.appendChild(desc);
+
+    // Button that makes elements in Markup container selectable
+    const sel_el_btn = document.createElement('button');
+    sel_el_btn.innerHTML = 'Select element';
+    sel_el_btn.onclick = function (){
+      // Make elements in container selectable
+      // Maybe: change inline style of container so that hovered over elements get a border
+    }
+    form_fs.appendChild(sel_el_btn);
+
+    // Button that inserts new element after selected element
+    const ins_after_btn = document.createElement('button');
+    ins_after_btn.innerHTML = 'Insert after';
+    ins_after_btn.onclick = markup.insertAfter;
+    form_fs.appendChild(ins_after_btn);
+
+    // Values/settings of new or selected element
+    
+    const type_label = document.createElement('label');
+    type_label.for = 'MU_type';
+    type_label.innerHTML = 'Tag-type of element:';
+    form_fs.appendChild(type_label);
+    // const type_input = document.createElement('input'); // Type of element
+    // type_input.id = 'MU_type';
+    // type_input.type = 'text';
+    // type_input.name = 'MU_type';
+    // type_input.value = '';
+    // form_fs.appendChild(type_label);
+    // form_fs.appendChild(type_input);
+
+    const type_select = document.createElement('select');
+    type_select.name = 'MU_type';
+    type_select.id = 'MU_type';
+    for (const tagName in Object.keys(markup.validElements)){
+      const option = document.createElement('option');
+      option.value = tagName;
+      option.innerHTML = tagName;
+      type_select.appendChild(option);
+    }
+    form_fs.appendChild(type_select);
+    
+    const inner_html_label = document.createElement('label');
+    inner_html_label.for = 'MU_inner_html';
+    inner_html_label.innerHTML = 'innerHTML of element:';
+    form_fs.appendChild(inner_html_label);
+    const inner_html_input = document.createElement('input');
+    inner_html_input.id = 'MU_inner_html';
+    inner_html_input.type = 'text';
+    inner_html_input.name = 'MU_inner_html';
+    inner_html_input.value = '';
+    form_fs.appendChild(inner_html_input);
+    
+    // outer.appendChild(editor);
+
+    // const el_br = document.createElement('br');
+    // outer.appendChild(el_br);
+
+    return editor;
+  },
   setupContainer: function (outer_container_id){
     const outer = document.getElementById(outer_container_id);
     
-    if (!document.getElementById(markup.edit_window_id)){
-      const editor_window = document.createElement('form');
-      editor_window.id = markup.editor_window_id;
-      const form_fs = document.createElement('fieldset');
-      editor_window.appendChild(form_fs);
-      const fs_legend = document.createElement('legend');
-      fs_legend.innerHTML = 'Markup Editing Window';
-      form_fs.appendChild(fs_legend);
+    if (!document.getElementById(markup.editor_id)){
+      const editor = markup.editor();
+      // const editor = document.createElement('form');
+      // editor.id = markup.editor_id;
+      // const form_fs = document.createElement('fieldset');
+      // editor.appendChild(form_fs);
+      // const fs_legend = document.createElement('legend');
+      // fs_legend.innerHTML = 'Markup Editing Window';
+      // form_fs.appendChild(fs_legend);
 
-      const desc = document.createElement('p');
-      desc.innerHTML = "Press 'Select element' to choose which element to insert in relation to.";
-      form_fs.appendChild(desc);
+      // const desc = document.createElement('p');
+      // desc.innerHTML = "Press 'Select element' to choose which element to insert in relation to.";
+      // form_fs.appendChild(desc);
 
-      const sel_el_btn = document.createElement('button');
-      sel_el_btn.innerHTML = 'Select element';
-      sel_el_btn.onclick = function (){
-        // Make elements in container selectable
-        // Maybe: change inline style of container so that hovered over elements get a border
-      }
-      form_fs.appendChild(sel_el_btn);
+      // const sel_el_btn = document.createElement('button');
+      // sel_el_btn.innerHTML = 'Select element';
+      // sel_el_btn.onclick = function (){
+      //   // Make elements in container selectable
+      //   // Maybe: change inline style of container so that hovered over elements get a border
+      // }
+      // form_fs.appendChild(sel_el_btn);
       
-      const ins_after_btn = document.createElement('button');
-      ins_after_btn.onclick = markup.insertAfter;
-      ins_after_btn.innerHTML = 'Insert after';
-      form_fs.appendChild(ins_after_btn);
+      // const ins_after_btn = document.createElement('button');
+      // ins_after_btn.onclick = markup.insertAfter;
+      // ins_after_btn.innerHTML = 'Insert after';
+      // form_fs.appendChild(ins_after_btn);
 
-      const el_type_label = document.createElement('label');
-      el_type_label.for = 'MU_type';
-      el_type_label.innerHTML = 'Type of element:';
-      const el_type_input = document.createElement('input');
-      el_type_input.id = 'MU_type';
-      el_type_input.type = 'text';
-      el_type_input.name = 'MU_type';
-      el_type_input.value = '';
-      form_fs.appendChild(el_type_label);
-      form_fs.appendChild(el_type_input);
+      // const type_label = document.createElement('label');
+      // type_label.for = 'MU_type';
+      // type_label.innerHTML = 'Type of element:';
+      // const type_input = document.createElement('input');
+      // type_input.id = 'MU_type';
+      // type_input.type = 'text';
+      // type_input.name = 'MU_type';
+      // type_input.value = '';
+      // form_fs.appendChild(type_label);
+      // form_fs.appendChild(type_input);
       
-      const el_inner_html_label = document.createElement('label');
-      el_inner_html_label.for = 'MU_inner_html';
-      el_inner_html_label.innerHTML = 'innerHTML of element:';
-      const el_inner_html_input = document.createElement('input');
-      el_inner_html_input.id = 'MU_inner_html';
-      el_inner_html_input.type = 'text';
-      el_inner_html_input.name = 'MU_inner_html';
-      el_inner_html_input.value = '';
-      form_fs.appendChild(el_inner_html_label);
-      form_fs.appendChild(el_inner_html_input);
+      // const inner_html_label = document.createElement('label');
+      // inner_html_label.for = 'MU_inner_html';
+      // inner_html_label.innerHTML = 'innerHTML of element:';
+      // const inner_html_input = document.createElement('input');
+      // inner_html_input.id = 'MU_inner_html';
+      // inner_html_input.type = 'text';
+      // inner_html_input.name = 'MU_inner_html';
+      // inner_html_input.value = '';
+      // form_fs.appendChild(inner_html_label);
+      // form_fs.appendChild(inner_html_input);
       
-      outer.appendChild(editor_window);
+      outer.appendChild(editor);
 
       const el_br = document.createElement('br');
       outer.appendChild(el_br);
