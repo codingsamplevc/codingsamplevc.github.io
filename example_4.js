@@ -6,60 +6,59 @@ const markup = {
   editor_id: 'MU_editor',
   inner_container_id: 'MU_container',
   ValidElements: {
-    a: 1,
-    div: 1,
+    a: 'Uncategorized',
+    div: 'Uncategorized',
+    button: 'Uncategorized',
+    hr: 'Uncategorized',
+    br: 'Uncategorized',
+    wbr: 'Uncategorized',
     
-    p: 1,
-    span: 1,
-    b: 1,
-    strong: 1,
-    i: 1,
-    em: 1,
-    sup: 1,
-    sub: 1,
-    code: 1,
-    pre: 1,
-    h1: 1,
-    h2: 1,
-    h3: 1,
-    h4: 1,
-    h5: 1,
-    h6: 1,
+    p: 'Text',
+    span: 'Text',
+    b: 'Text',
+    strong: 'Text',
+    i: 'Text',
+    em: 'Text',
+    sup: 'Text',
+    sub: 'Text',
+    code: 'Text',
+    pre: 'Text',
+    h1: 'Text',
+    h2: 'Text',
+    h3: 'Text',
+    h4: 'Text',
+    h5: 'Text',
+    h6: 'Text',
     
-    ul: 1,
-    ol: 1,
-    li: 1,
-    data: 1,
+    ul: 'Lists',
+    ol: 'Lists',
+    li: 'Lists',
+    data: 'Lists',
     
-    main: 1,
-    article: 1,
-    aside: 1,
-    section: 1,
-    header: 1,
-    footer: 1,
-    nav: 1,
-    hgroup: 1,
+    main: 'Layout',
+    article: 'Layout',
+    aside: 'Layout',
+    section: 'Layout',
+    header: 'Layout',
+    footer: 'Layout',
+    nav: 'Layout',
+    hgroup: 'Layout',
 
-    table: 1,
-    thead: 1,
-    tbody: 1,
-    caption: 1,
-    tr: 1,
-    th: 1,
-    td: 1,
-    colgroup: 1,
-    col: 0,
+    table: 'Table',
+    thead: 'Table',
+    tbody: 'Table',
+    caption: 'Table',
+    tr: 'Table',
+    th: 'Table',
+    td: 'Table',
+    colgroup: 'Table',
+    col: 'Table',
 
-    form: 1,
-    fieldset: 1,
-    legend: 1,
-    label: 1,
-
-    input: 0,
-    button: 1,
-    hr: 0,
-    br: 0,
-    wbr: 0,
+    form: 'Form',
+    fieldset: 'Form',
+    legend: 'Form',
+    label: 'Form',
+    input: 'Form',
   },
   createElement: function (elName, props){
     if (elName in markup.ValidElements){
@@ -140,12 +139,34 @@ const markup = {
     const type_select = document.createElement('select');
     type_select.name = 'MU_type';
     type_select.id = 'MU_type';
-    for (const tagName of Object.keys(markup.ValidElements)){
-      const option = document.createElement('option');
-      option.value = tagName;
-      option.innerHTML = tagName;
-      type_select.appendChild(option);
+
+    let tmp_groupName = '';
+    let tmp_optgroup = null;
+    for (const [tagName, optGroup] in Object.entries(markup.ValidElements)){
+      if (!tmp_optgroup){
+        tmp_optgroup = document.createElement('optgroup');
+        tmp_optgroup.label = optGroup;
+        tmp_groupName = optGroup;
+      }
+      if (tmp_groupName != optGroup){
+        type_select.appendChild(tmp_optgroup);
+        tmp_optgroup = document.createElement('optgroup');
+        tmp_optgroup.label = optGroup;
+        tmp_groupName = optGroup;
+      } else {
+        const option = document.createElement('option');
+        option.value = tagName;
+        option.innerHTML = tagName;
+        tmp_optgroup.appendChild(option);
+      }
+      // const option = document.createElement('option');
+      // option.value = tagName;
+      // option.innerHTML = tagName;
+      // type_select.appendChild(option);
     }
+    type_select.appendChild(tmp_optgroup);
+    tmp_optgroup = null;
+    
     form_fs.appendChild(type_select);
     
     const inner_html_label = document.createElement('label');
@@ -171,52 +192,6 @@ const markup = {
     
     if (!document.getElementById(markup.editor_id)){
       const editor = markup.editor();
-      // const editor = document.createElement('form');
-      // editor.id = markup.editor_id;
-      // const form_fs = document.createElement('fieldset');
-      // editor.appendChild(form_fs);
-      // const fs_legend = document.createElement('legend');
-      // fs_legend.innerHTML = 'Markup Editing Window';
-      // form_fs.appendChild(fs_legend);
-
-      // const desc = document.createElement('p');
-      // desc.innerHTML = "Press 'Select element' to choose which element to insert in relation to.";
-      // form_fs.appendChild(desc);
-
-      // const sel_el_btn = document.createElement('button');
-      // sel_el_btn.innerHTML = 'Select element';
-      // sel_el_btn.onclick = function (){
-      //   // Make elements in container selectable
-      //   // Maybe: change inline style of container so that hovered over elements get a border
-      // }
-      // form_fs.appendChild(sel_el_btn);
-      
-      // const ins_after_btn = document.createElement('button');
-      // ins_after_btn.onclick = markup.insertAfter;
-      // ins_after_btn.innerHTML = 'Insert after';
-      // form_fs.appendChild(ins_after_btn);
-
-      // const type_label = document.createElement('label');
-      // type_label.for = 'MU_type';
-      // type_label.innerHTML = 'Type of element:';
-      // const type_input = document.createElement('input');
-      // type_input.id = 'MU_type';
-      // type_input.type = 'text';
-      // type_input.name = 'MU_type';
-      // type_input.value = '';
-      // form_fs.appendChild(type_label);
-      // form_fs.appendChild(type_input);
-      
-      // const inner_html_label = document.createElement('label');
-      // inner_html_label.for = 'MU_inner_html';
-      // inner_html_label.innerHTML = 'innerHTML of element:';
-      // const inner_html_input = document.createElement('input');
-      // inner_html_input.id = 'MU_inner_html';
-      // inner_html_input.type = 'text';
-      // inner_html_input.name = 'MU_inner_html';
-      // inner_html_input.value = '';
-      // form_fs.appendChild(inner_html_label);
-      // form_fs.appendChild(inner_html_input);
       
       outer.appendChild(editor);
 
