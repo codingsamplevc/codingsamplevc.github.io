@@ -142,7 +142,7 @@ const markup = {
 
     let tmp_groupName = '';
     let tmp_optgroup = null;
-    for (const [tagName, optGroup] in Object.entries(markup.ValidElements)){
+    for (const [tagName, optGroup] of Object.entries(markup.ValidElements)){
       if (!tmp_optgroup){
         tmp_optgroup = document.createElement('optgroup');
         tmp_optgroup.label = optGroup;
