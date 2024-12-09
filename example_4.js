@@ -140,7 +140,7 @@ const markup = {
     const type_select = document.createElement('select');
     type_select.name = 'MU_type';
     type_select.id = 'MU_type';
-    for (const tagName in Object.keys(markup.ValidElements)){
+    for (const tagName of Object.keys(markup.ValidElements)){
       const option = document.createElement('option');
       option.value = tagName;
       option.innerHTML = tagName;
