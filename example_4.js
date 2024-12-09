@@ -60,6 +60,13 @@ const markup = {
     label: 'Form',
     input: 'Form',
   },
+  isInsideContainer: function (el){
+    const container = document.getElementById(markup.inner_container_id);
+    if (container && !(container.isSameNode(el))){
+      return container.contains(el);
+    }
+    return false;
+  },
   createElement: function (elName, props){
     if (elName in markup.ValidElements){
       let el = document.createElement(elName);
@@ -81,7 +88,7 @@ const markup = {
     const el_type = document.getElementById('MU_type').value;
     const inner_html = document.getElementById('MU_inner_html').value;
   },
-  appendElement: function (el, parent){
+  appendElement: function (parent, el){
     parent.appendChild(el);
   },
   insertAfter: function (target, el){
@@ -90,11 +97,11 @@ const markup = {
   insertBefore: function (target, el){
     target.before(el);
   },
-  clickListener: function (e){
-    console.log(e.type);
-    e.stopPropagation();
+  insertContainer: function (el){
+    const container = document.getElementById(markup.inner_container_id);
+    markup.appendElement(container, el);
   },
-  editor: function (){
+  editor: function (){ // Editor form
     const editor = document.createElement('form');
     editor.id = markup.editor_id;
     editor.addEventListener('submit', (e) => {e.preventDefault()});
@@ -118,6 +125,12 @@ const markup = {
     };
     form_fs.appendChild(sel_el_btn);
 
+    // Button that inserts new element after selected element
+    const addToContainer_btn = document.createElement('button');
+    addToContainer_btn.innerHTML = 'Add to Markup Container';
+    addToContainer_btn.onclick = markup.insertAfter;
+    form_fs.appendChild(addToContainer_btn);
+    
     // Button that inserts new element after selected element
     const ins_after_btn = document.createElement('button');
     ins_after_btn.innerHTML = 'Insert after';
@@ -189,6 +202,17 @@ const markup = {
 
     return editor;
   },
+  clickListener: function (e){ // Listener for Markup container
+    
+    console.log(e.target);
+    console.log(e.type);
+
+    markup.selected = e.target;
+
+    
+    
+    e.stopPropagation();
+  },
   setupContainer: function (outer_container_id){
     const outer = document.getElementById(outer_container_id);
     
@@ -206,13 +230,6 @@ const markup = {
       inner.addEventListener('click', markup.clickListener);
       outer.appendChild(inner);
     }
-  },
-  isInsideInner: function (el){
-    const inner = document.getElementById(markup.inner_container_id);
-    if (inner && !(inner.isSameNode(el))){
-      return inner.contains(el);
-    }
-    return false;
   },
   
 };
