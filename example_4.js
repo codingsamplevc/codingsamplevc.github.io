@@ -137,7 +137,7 @@ const markup = {
     // form_fs.appendChild(type_input);
 
     const type_select = document.createElement('select');
-    type_select.name = 'MU_type';
+    // type_select.name = 'MU_type';
     type_select.id = 'MU_type';
 
     let tmp_groupName = '';
@@ -176,7 +176,7 @@ const markup = {
     const inner_html_input = document.createElement('input');
     inner_html_input.id = 'MU_inner_html';
     inner_html_input.type = 'text';
-    inner_html_input.name = 'MU_inner_html';
+    // inner_html_input.name = 'MU_inner_html';
     inner_html_input.value = '';
     form_fs.appendChild(inner_html_input);
     
