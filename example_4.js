@@ -85,8 +85,9 @@ const markup = {
   },
   getEdits: function (){
     // const edit_window = document.getElementById(markup.editor_id);
-    const el_type = document.getElementById('MU_type').value;
+    const type = document.getElementById('MU_type').value;
     const inner_html = document.getElementById('MU_inner_html').value;
+    
   },
   appendElement: function (parent, el){
     parent.appendChild(el);
