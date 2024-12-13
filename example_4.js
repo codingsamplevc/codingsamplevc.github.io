@@ -67,6 +67,23 @@ const markup = {
     label: 'Form',
     input: 'Form',
   },
+  setupContainer: function (outer_container_id){
+    const outer = document.getElementById(outer_container_id);
+    
+    if (!document.getElementById(markup.ids.editor)){
+      const editor = markup.editor();
+      
+      outer.appendChild(editor);
+
+      const el_br = document.createElement('br');
+      outer.appendChild(el_br);
+    }
+    if (!document.getElementById(markup.ids.inner_container)){
+      const inner = document.createElement('div');
+      inner.id = markup.ids.inner_container;
+      inner.addEventListener('click', markup.clickListener);
+      outer.appendChild(inner);
+    }
   },
   editor: function (){ // Editor form
     const editor = document.createElement('form');
@@ -206,7 +223,7 @@ const markup = {
     let tmp = document.getElementById(markup.ids.editor_attr).value;
     if (tmp){
       tmp = tmp.split(',');
-      tmp.forEach((kv) => let _ = kv.split(' '); attr[_[0]] = _[1]);
+      tmp.forEach((kv) => { let _ = kv.split(' '); attr[_[0]] = _[1] });
       // tmp.forEach((e) => attr[e[0]] = e[1]);
       tmp = null;
     } else {
@@ -242,22 +259,5 @@ const markup = {
     
     e.stopPropagation();
   },
-  setupContainer: function (outer_container_id){
-    const outer = document.getElementById(outer_container_id);
-    
-    if (!document.getElementById(markup.ids.editor)){
-      const editor = markup.editor();
-      
-      outer.appendChild(editor);
-
-      const el_br = document.createElement('br');
-      outer.appendChild(el_br);
-    }
-    if (!document.getElementById(markup.ids.inner_container)){
-      const inner = document.createElement('div');
-      inner.id = markup.ids.inner_container;
-      inner.addEventListener('click', markup.clickListener);
-      outer.appendChild(inner);
-    }
   
 };
