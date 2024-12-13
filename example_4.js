@@ -175,12 +175,12 @@ const markup = {
       // option.innerHTML = tagName;
       // type_select.appendChild(option);
     }
-    console.log(tmp_optgroups);
-    for (const optGroup in markup.ValidElements){
-      console.log(optGroup);
+    // console.log(tmp_optgroups);
+    for (const optGroup in tmp_optgroups){
+      // console.log(optGroup);
       let tmp = document.createElement('optgroup');
       tmp.label = optGroup;
-      for (const tagName of markup.ValidElements[optGroup]){
+      for (const tagName of tmp_optgroups[optGroup]){
         let tmp2 = document.createElement('option');
         tmp2.value = tagName;
         tmp2.innerHTML = tagName;
