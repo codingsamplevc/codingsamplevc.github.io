@@ -206,7 +206,7 @@ const markup = {
 
     const attr_label = document.createElement('label');
     attr_label.for = markup.ids.editor_attr;
-    attr_label.innerHTML = 'Attributes of element (format - "name value,name value, ...":';
+    attr_label.innerHTML = 'Attributes of element (format -> "name value,name value, ..."):';
     form_fs.appendChild(attr_label);
     const attr_input = document.createElement('input');
     attr_input.id = markup.ids.editor_attr;
