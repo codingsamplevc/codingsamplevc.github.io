@@ -57,7 +57,7 @@ td.dead {
   opacity: 0.5;
 }
 
-#MU_container:hover {
+#MU_container :hover {
   color: blue;
   background-color: darkblue;
   opacity: 1;
