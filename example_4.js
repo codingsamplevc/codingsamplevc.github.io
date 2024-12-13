@@ -175,7 +175,9 @@ const markup = {
       // option.innerHTML = tagName;
       // type_select.appendChild(option);
     }
+    console.log(tmp_optgroups);
     for (const optGroup in markup.ValidElements){
+      console.log(optGroup);
       let tmp = document.createElement('optgroup');
       tmp.label = optGroup;
       for (const tagName of markup.ValidElements[optGroup]){
