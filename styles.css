@@ -62,3 +62,7 @@ td.dead {
   background-color: darkblue;
   opacity: 1;
 }
+
+#MU_container * {
+  width: fit-content;
+}
