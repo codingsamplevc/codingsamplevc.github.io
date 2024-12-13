@@ -139,33 +139,46 @@ const markup = {
     // type_select.name = 'MU_type';
     type_select.id = markup.ids.editor_type;
 
-    let tmp_groupName = '';
-    let tmp_optgroup = null;
+    // let tmp_groupName = '';
+    // let tmp_optgroup = null;
+    const tmp_optgroups = {};
     for (const [tagName, optGroup] of Object.entries(markup.ValidElements)){
-      if (!tmp_optgroup){
-        tmp_optgroup = document.createElement('optgroup');
+      if (!(optGroup in tmp_optgroups)){
+        let tmp_optgroup = document.createElement('optgroup');
         tmp_optgroup.label = optGroup;
-        tmp_groupName = optGroup;
+        tmp_optgroups[optGroup] = tmp_optgroup;
       }
-      if (tmp_groupName != optGroup){
-        type_select.appendChild(tmp_optgroup);
-        tmp_optgroup = document.createElement('optgroup');
-        tmp_optgroup.label = optGroup;
-        tmp_groupName = optGroup;
-      } else {
-        const option = document.createElement('option');
-        option.value = tagName;
-        option.innerHTML = tagName;
-        tmp_optgroup.appendChild(option);
-      }
+      let tmp_option = document.createElement('option');
+      tmp_option.value = tagName;
+      tmp_option.innerHTML = tagName;
+      tmp_optgroups[optGroup].appendChild(tmp_option);
+      // if (!tmp_optgroup){
+      //   tmp_optgroup = document.createElement('optgroup');
+      //   tmp_optgroup.label = optGroup;
+      //   tmp_groupName = optGroup;
+      // }
+      // if (tmp_groupName != optGroup){
+      //   type_select.appendChild(tmp_optgroup);
+      //   tmp_optgroup = document.createElement('optgroup');
+      //   tmp_optgroup.label = optGroup;
+      //   tmp_groupName = optGroup;
+      // } else {
+      //   const option = document.createElement('option');
+      //   option.value = tagName;
+      //   option.innerHTML = tagName;
+      //   tmp_optgroup.appendChild(option);
+      // }
       // const option = document.createElement('option');
       // option.value = tagName;
       // option.innerHTML = tagName;
       // type_select.appendChild(option);
     }
-    type_select.appendChild(tmp_optgroup);
-    tmp_groupName = null;
-    tmp_optgroup = null;
+    for (const optGroup in Object.values(markup.ValidElements)){
+      type_select.appendChild(optGroup);
+    }
+    // type_select.appendChild(tmp_optgroup);
+    // tmp_groupName = null;
+    // tmp_optgroup = null;
     
     form_fs.appendChild(type_select);
     
