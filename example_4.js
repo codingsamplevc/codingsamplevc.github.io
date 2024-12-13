@@ -178,7 +178,7 @@ const markup = {
     for (const optGroup in markup.ValidElements){
       let tmp = document.createElement('optgroup');
       tmp.label = optGroup;
-      for (const tagName in markup.ValidElements[optGroup]){
+      for (const tagName of markup.ValidElements[optGroup]){
         let tmp2 = document.createElement('option');
         tmp2.value = tagName;
         tmp2.innerHTML = tagName;
