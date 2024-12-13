@@ -3,8 +3,15 @@
 
 const markup = {
   selected: null,
-  editor_id: 'MU_editor',
-  inner_container_id: 'MU_container',
+  // inner_container_id: 'MU_container',
+  // editor_id: 'MU_editor',
+  ids: {
+    inner_container: 'MU_container',
+    editor: 'MU_editor',
+    editor_type: 'MU_type',
+    editor_inner_html: 'MU_inner_html',
+    editor_attr: 'MU_attr',
+  },
   ValidElements: {
     a: 'Uncategorized',
     div: 'Uncategorized',
@@ -61,7 +68,7 @@ const markup = {
     input: 'Form',
   },
   isInsideContainer: function (el){
-    const container = document.getElementById(markup.inner_container_id);
+    const container = document.getElementById(markup.ids.inner_container);
     if (container && !(container.isSameNode(el))){
       return container.contains(el);
     }
@@ -69,12 +76,12 @@ const markup = {
   },
   createElement: function (elName, props){
     if (elName in markup.ValidElements){
-      let el = document.createElement(elName);
+      const el = document.createElement(elName);
       if ('innerHTML' in props){
         el.innerHTML = props.innerHTML;
       }
       if ('attr' in props){
-        for (const [name, value] of Object.entries(props)){
+        for (const [name, value] of Object.entries(props.attr)){
           el.setAttribute(name, value);
         }
       }
@@ -85,9 +92,14 @@ const markup = {
   },
   getEdits: function (){
     // const edit_window = document.getElementById(markup.editor_id);
-    const type = document.getElementById('MU_type').value;
-    const inner_html = document.getElementById('MU_inner_html').value;
-    
+    const type = document.getElementById(markup.ids.editor_type).value;
+    const inner_html = document.getElementById(markup.ids.editor_inner_html).value;
+    const attr = {};
+    let tmp = document.getElementById(markup.ids.editor_attr).value.split(',');
+    tmp.forEach((e) => e = e.split(' '));
+    tmp.forEach((e) => attr[e[0]] = e[1]);
+
+    return { type: type, props: { inner_html: inner_html, attr: attr }};
   },
   appendElement: function (parent, el){
     parent.appendChild(el);
@@ -99,12 +111,12 @@ const markup = {
     target.before(el);
   },
   insertContainer: function (el){
-    const container = document.getElementById(markup.inner_container_id);
+    const container = document.getElementById(markup.ids.inner_container);
     markup.appendElement(container, el);
   },
   editor: function (){ // Editor form
     const editor = document.createElement('form');
-    editor.id = markup.editor_id;
+    editor.id = markup.ids.editor;
     editor.addEventListener('submit', (e) => {e.preventDefault()});
     
     const form_fs = document.createElement('fieldset');
@@ -154,7 +166,7 @@ const markup = {
 
     const type_select = document.createElement('select');
     // type_select.name = 'MU_type';
-    type_select.id = 'MU_type';
+    type_select.id = markup.ids.editor_type;
 
     let tmp_groupName = '';
     let tmp_optgroup = null;
@@ -181,25 +193,31 @@ const markup = {
       // type_select.appendChild(option);
     }
     type_select.appendChild(tmp_optgroup);
+    tmp_groupName = null;
     tmp_optgroup = null;
     
     form_fs.appendChild(type_select);
     
     const inner_html_label = document.createElement('label');
-    inner_html_label.for = 'MU_inner_html';
+    inner_html_label.for = markup.ids.editor_inner_html;
     inner_html_label.innerHTML = 'innerHTML of element:';
     form_fs.appendChild(inner_html_label);
     const inner_html_input = document.createElement('input');
-    inner_html_input.id = 'MU_inner_html';
+    inner_html_input.id = markup.ids.editor_inner_html;
     inner_html_input.type = 'text';
-    // inner_html_input.name = 'MU_inner_html';
     inner_html_input.value = '';
     form_fs.appendChild(inner_html_input);
-    
-    // outer.appendChild(editor);
 
-    // const el_br = document.createElement('br');
-    // outer.appendChild(el_br);
+    const attr_label = document.createElement('label');
+    attr_label.for = markup.ids.editor_attr;
+    attr_label.innerHTML = 'Attributes of element (format - "name value,name value, ...":';
+    form_fs.appendChild(attr_label);
+    const attr_input = document.createElement('input');
+    attr_input.id = markup.ids.editor_attr;
+    attr_input.type = 'text';
+    attr_input.value = '';
+    form_fs.appendChild(attr_input);
+
 
     return editor;
   },
@@ -217,7 +235,7 @@ const markup = {
   setupContainer: function (outer_container_id){
     const outer = document.getElementById(outer_container_id);
     
-    if (!document.getElementById(markup.editor_id)){
+    if (!document.getElementById(markup.ids.editor)){
       const editor = markup.editor();
       
       outer.appendChild(editor);
@@ -225,9 +243,9 @@ const markup = {
       const el_br = document.createElement('br');
       outer.appendChild(el_br);
     }
-    if (!document.getElementById(markup.inner_container_id)){
+    if (!document.getElementById(markup.ids.inner_container)){
       const inner = document.createElement('div');
-      inner.id = markup.inner_container_id;
+      inner.id = markup.ids.inner_container;
       inner.addEventListener('click', markup.clickListener);
       outer.appendChild(inner);
     }
