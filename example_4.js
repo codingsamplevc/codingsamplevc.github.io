@@ -67,52 +67,23 @@ const markup = {
     label: 'Form',
     input: 'Form',
   },
-  isInsideContainer: function (el){
-    const container = document.getElementById(markup.ids.inner_container);
-    if (container && !(container.isSameNode(el))){
-      return container.contains(el);
-    }
-    return false;
-  },
-  createElement: function (elName, props){
-    if (elName in markup.ValidElements){
-      const el = document.createElement(elName);
-      if ('innerHTML' in props){
-        el.innerHTML = props.innerHTML;
-      }
-      if ('attr' in props){
-        for (const [name, value] of Object.entries(props.attr)){
-          el.setAttribute(name, value);
-        }
-      }
-      return el;
-    } else {
-      return;
-    }
-  },
-  getEdits: function (){
-    // const edit_window = document.getElementById(markup.editor_id);
-    const type = document.getElementById(markup.ids.editor_type).value;
-    const inner_html = document.getElementById(markup.ids.editor_inner_html).value;
-    const attr = {};
-    let tmp = document.getElementById(markup.ids.editor_attr).value.split(',');
-    tmp.forEach((e) => e = e.split(' '));
-    tmp.forEach((e) => attr[e[0]] = e[1]);
+  setupContainer: function (outer_container_id){
+    const outer = document.getElementById(outer_container_id);
+    
+    if (!document.getElementById(markup.ids.editor)){
+      const editor = markup.editor();
+      
+      outer.appendChild(editor);
 
-    return { type: type, props: { inner_html: inner_html, attr: attr }};
-  },
-  appendElement: function (parent, el){
-    parent.appendChild(el);
-  },
-  insertAfter: function (target, el){
-    target.after(el);
-  },
-  insertBefore: function (target, el){
-    target.before(el);
-  },
-  insertContainer: function (el){
-    const container = document.getElementById(markup.ids.inner_container);
-    markup.appendElement(container, el);
+      const el_br = document.createElement('br');
+      outer.appendChild(el_br);
+    }
+    if (!document.getElementById(markup.ids.inner_container)){
+      const inner = document.createElement('div');
+      inner.id = markup.ids.inner_container;
+      inner.addEventListener('click', markup.clickListener);
+      outer.appendChild(inner);
+    }
   },
   editor: function (){ // Editor form
     const editor = document.createElement('form');
@@ -141,7 +112,7 @@ const markup = {
     // Button that inserts new element after selected element
     const addToContainer_btn = document.createElement('button');
     addToContainer_btn.innerHTML = 'Add to Markup Container';
-    addToContainer_btn.onclick = markup.insertAfter;
+    addToContainer_btn.onclick = markup.insertContainer;
     form_fs.appendChild(addToContainer_btn);
     
     // Button that inserts new element after selected element
@@ -221,6 +192,62 @@ const markup = {
 
     return editor;
   },
+  isInsideContainer: function (el){
+    const container = document.getElementById(markup.ids.inner_container);
+    if (container && !(container.isSameNode(el))){
+      return container.contains(el);
+    }
+    return false;
+  },
+  createElement: function (elValues){
+    if (elValues.type in markup.ValidElements){
+      const el = document.createElement(elValues.type);
+      if (elValues.inner_html){
+        el.innerHTML = elValues.inner_html;
+      }
+      if (elValues.attr){
+        for (const [name, value] of Object.entries(elValues.attr)){
+          el.setAttribute(name, value);
+        }
+      }
+      return el;
+    } else {
+      return;
+    }
+  },
+  getEdits: function (){
+    // const edit_window = document.getElementById(markup.editor_id);
+    const type = document.getElementById(markup.ids.editor_type).value;
+    const inner_html = document.getElementById(markup.ids.editor_inner_html).value;
+    let attr = {};
+    let tmp = document.getElementById(markup.ids.editor_attr).value;
+    if (tmp){
+      tmp = tmp.split(',');
+      tmp.forEach((kv) => let _ = kv.split(' '); attr[_[0]] = _[1]);
+      // tmp.forEach((e) => attr[e[0]] = e[1]);
+      tmp = null;
+    } else {
+      attr = null;
+    }
+    return { type: type, inner_html: inner_html, attr: attr };
+  },
+  appendElement: function (parent, el){
+    parent.appendChild(el);
+  },
+  insertAfter: function (target, el){
+    target.after(el);
+  },
+  insertBefore: function (target, el){
+    target.before(el);
+  },
+  insertContainer: function (){
+    const container = document.getElementById(markup.ids.inner_container);
+    if (container){
+      const el = markup.createElement(markup.getEdits());
+      container.appendChild(el);
+      // markup.appendElement(container, el);
+    }
+  },
   clickListener: function (e){ // Listener for Markup container
     
     console.log(e.target);
@@ -231,24 +258,6 @@ const markup = {
     
     
     e.stopPropagation();
-  },
-  setupContainer: function (outer_container_id){
-    const outer = document.getElementById(outer_container_id);
-    
-    if (!document.getElementById(markup.ids.editor)){
-      const editor = markup.editor();
-      
-      outer.appendChild(editor);
-
-      const el_br = document.createElement('br');
-      outer.appendChild(el_br);
-    }
-    if (!document.getElementById(markup.ids.inner_container)){
-      const inner = document.createElement('div');
-      inner.id = markup.ids.inner_container;
-      inner.addEventListener('click', markup.clickListener);
-      outer.appendChild(inner);
-    }
   },
   
 };
