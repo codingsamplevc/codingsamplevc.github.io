@@ -144,14 +144,16 @@ const markup = {
     const tmp_optgroups = {};
     for (const [tagName, optGroup] of Object.entries(markup.ValidElements)){
       if (!(optGroup in tmp_optgroups)){
-        let tmp_optgroup = document.createElement('optgroup');
-        tmp_optgroup.label = optGroup;
-        tmp_optgroups[optGroup] = tmp_optgroup;
+        tmp_optgroups[optGroup] = [];
+        // let tmp_optgroup = document.createElement('optgroup');
+        // tmp_optgroup.label = optGroup;
+        // tmp_optgroups[optGroup] = tmp_optgroup;
       }
-      let tmp_option = document.createElement('option');
-      tmp_option.value = tagName;
-      tmp_option.innerHTML = tagName;
-      tmp_optgroups[optGroup].appendChild(tmp_option);
+      tmp_optgroups[optGroup].push(tagName);
+      // let tmp_option = document.createElement('option');
+      // tmp_option.value = tagName;
+      // tmp_option.innerHTML = tagName;
+      // tmp_optgroups[optGroup].appendChild(tmp_option);
       // if (!tmp_optgroup){
       //   tmp_optgroup = document.createElement('optgroup');
       //   tmp_optgroup.label = optGroup;
@@ -173,8 +175,16 @@ const markup = {
       // option.innerHTML = tagName;
       // type_select.appendChild(option);
     }
-    for (const optGroup in Object.values(markup.ValidElements)){
-      type_select.appendChild(optGroup);
+    for (const optGroup in markup.ValidElements){
+      let tmp = document.createElement('optgroup');
+      tmp.label = optGroup;
+      for (const tagName in markup.ValidElements[optGroup]){
+        let tmp2 = document.createElement('option');
+        tmp2.value = tagName;
+        tmp2.innerHTML = tagName;
+        tmp.appendChild(tmp2);
+      }
+      type_select.appendChild(tmp);
     }
     // type_select.appendChild(tmp_optgroup);
     // tmp_groupName = null;
