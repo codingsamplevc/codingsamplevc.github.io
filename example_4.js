@@ -230,6 +230,11 @@ const markup = {
     }
   },
   clickListener: function (e){ // Listener for Markup container
+
+    if (!markup.isInsideContainer(e.target)){
+      e.stopPropagation();
+      return;
+    }
     
     console.log(e.target);
     // console.log(e.type);
