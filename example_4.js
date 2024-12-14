@@ -231,7 +231,7 @@ const markup = {
   insertBefore: function (){
     if (markup.selected){
       const el = markup.createElement(markup.getEdits());
-      markup.selected.after(el);
+      markup.selected.before(el);
     }
   },
   insertContainer: function (){
