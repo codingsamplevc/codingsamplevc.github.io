@@ -6,11 +6,12 @@ const markup = {
   // inner_container_id: 'MU_container',
   // editor_id: 'MU_editor',
   ids: {
-    inner_container: 'MU_container',
     editor: 'MU_editor',
     editor_type: 'MU_type',
     editor_inner_html: 'MU_inner_html',
     editor_attr: 'MU_attr',
+    inner_container: 'MU_container',
+    selected: 'MU_selected',
   },
   ValidElements: {
     a: 'Uncategorized',
@@ -67,7 +68,7 @@ const markup = {
     label: 'Form',
     input: 'Form',
   },
-  setupContainer: function (outer_container_id){
+  setupContainer: function (outer_container_id){ // Setup: Sets up the editor and the container
     const outer = document.getElementById(outer_container_id);
     
     if (!document.getElementById(markup.ids.editor)){
@@ -100,8 +101,8 @@ const markup = {
     desc.innerHTML = "Press 'Select element' to choose which element to insert in relation to.";
     form_fs.appendChild(desc);
 
-    // Button that makes elements in Markup container selectable
-    const sel_el_btn = document.createElement('button');
+    
+    const sel_el_btn = document.createElement('button'); // Button that makes elements in Markup container selectable
     sel_el_btn.innerHTML = 'Select element';
     sel_el_btn.onclick = function (){
       // Make elements in container selectable
@@ -127,57 +128,18 @@ const markup = {
     type_label.for = 'MU_type';
     type_label.innerHTML = 'Tag-type of element:';
     form_fs.appendChild(type_label);
-    // const type_input = document.createElement('input'); // Type of element
-    // type_input.id = 'MU_type';
-    // type_input.type = 'text';
-    // type_input.name = 'MU_type';
-    // type_input.value = '';
-    // form_fs.appendChild(type_label);
-    // form_fs.appendChild(type_input);
 
     const type_select = document.createElement('select');
-    // type_select.name = 'MU_type';
     type_select.id = markup.ids.editor_type;
 
-    // let tmp_groupName = '';
-    // let tmp_optgroup = null;
     const tmp_optgroups = {};
     for (const [tagName, optGroup] of Object.entries(markup.ValidElements)){
       if (!(optGroup in tmp_optgroups)){
         tmp_optgroups[optGroup] = [];
-        // let tmp_optgroup = document.createElement('optgroup');
-        // tmp_optgroup.label = optGroup;
-        // tmp_optgroups[optGroup] = tmp_optgroup;
       }
       tmp_optgroups[optGroup].push(tagName);
-      // let tmp_option = document.createElement('option');
-      // tmp_option.value = tagName;
-      // tmp_option.innerHTML = tagName;
-      // tmp_optgroups[optGroup].appendChild(tmp_option);
-      // if (!tmp_optgroup){
-      //   tmp_optgroup = document.createElement('optgroup');
-      //   tmp_optgroup.label = optGroup;
-      //   tmp_groupName = optGroup;
-      // }
-      // if (tmp_groupName != optGroup){
-      //   type_select.appendChild(tmp_optgroup);
-      //   tmp_optgroup = document.createElement('optgroup');
-      //   tmp_optgroup.label = optGroup;
-      //   tmp_groupName = optGroup;
-      // } else {
-      //   const option = document.createElement('option');
-      //   option.value = tagName;
-      //   option.innerHTML = tagName;
-      //   tmp_optgroup.appendChild(option);
-      // }
-      // const option = document.createElement('option');
-      // option.value = tagName;
-      // option.innerHTML = tagName;
-      // type_select.appendChild(option);
     }
-    // console.log(tmp_optgroups);
     for (const optGroup in tmp_optgroups){
-      // console.log(optGroup);
       let tmp = document.createElement('optgroup');
       tmp.label = optGroup;
       for (const tagName of tmp_optgroups[optGroup]){
@@ -188,9 +150,6 @@ const markup = {
       }
       type_select.appendChild(tmp);
     }
-    // type_select.appendChild(tmp_optgroup);
-    // tmp_groupName = null;
-    // tmp_optgroup = null;
     
     form_fs.appendChild(type_select);
     
@@ -241,7 +200,6 @@ const markup = {
     }
   },
   getEdits: function (){
-    // const edit_window = document.getElementById(markup.editor_id);
     const type = document.getElementById(markup.ids.editor_type).value;
     const inner_html = document.getElementById(markup.ids.editor_inner_html).value;
     let attr = {};
@@ -249,7 +207,6 @@ const markup = {
     if (tmp){
       tmp = tmp.split(',');
       tmp.forEach((kv) => { let _ = kv.split(' '); attr[_[0]] = _[1] });
-      // tmp.forEach((e) => attr[e[0]] = e[1]);
       tmp = null;
     } else {
       attr = null;
@@ -270,15 +227,24 @@ const markup = {
     if (container){
       const el = markup.createElement(markup.getEdits());
       container.appendChild(el);
-      // markup.appendElement(container, el);
     }
   },
   clickListener: function (e){ // Listener for Markup container
     
     console.log(e.target);
-    console.log(e.type);
+    // console.log(e.type);
 
-    markup.selected = e.target;
+    if (!markup.selected){
+      markup.selected = e.target;
+      e.target.id = markup.ids.selected;
+    } else if (!(markup.selected.isSameNode(e.target))){
+      markup.selected.removeAttribute('id');
+      markup.selected = e.target;
+      e.target.id = markup.ids.selected;
+    } else {
+      markup.selected.removeAttribute('id');
+      markup.selected = null;
+    }
 
     
     
