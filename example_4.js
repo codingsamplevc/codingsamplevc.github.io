@@ -102,13 +102,13 @@ const markup = {
     form_fs.appendChild(desc);
 
     
-    const sel_el_btn = document.createElement('button'); // Button that makes elements in Markup container selectable
-    sel_el_btn.innerHTML = 'Select element';
-    sel_el_btn.onclick = function (){
-      // Make elements in container selectable
-      // Maybe: change inline style of container so that hovered over elements get a border
-    };
-    form_fs.appendChild(sel_el_btn);
+    // const sel_el_btn = document.createElement('button'); // Button that makes elements in Markup container selectable
+    // sel_el_btn.innerHTML = 'Select element';
+    // sel_el_btn.onclick = function (){
+    //   // Make elements in container selectable
+    //   // Maybe: change inline style of container so that hovered over elements get a border
+    // };
+    // form_fs.appendChild(sel_el_btn);
 
     // Button that inserts new element after selected element
     const addToContainer_btn = document.createElement('button');
@@ -118,9 +118,15 @@ const markup = {
     
     // Button that inserts new element after selected element
     const ins_after_btn = document.createElement('button');
-    ins_after_btn.innerHTML = 'Insert after';
+    ins_after_btn.innerHTML = 'Insert after selected';
     ins_after_btn.onclick = markup.insertAfter;
     form_fs.appendChild(ins_after_btn);
+    
+    // Button that inserts new element after selected element
+    const ins_before_btn = document.createElement('button');
+    ins_before_btn.innerHTML = 'Insert before selected';
+    ins_before_btn.onclick = markup.insertBefore;
+    form_fs.appendChild(ins_before_btn);
 
     // Values/settings of new or selected element
     
@@ -216,11 +222,17 @@ const markup = {
   appendElement: function (parent, el){
     parent.appendChild(el);
   },
-  insertAfter: function (target, el){
-    target.after(el);
+  insertAfter: function (){
+    if (markup.selected){
+      const el = markup.createElement(markup.getEdits());
+      markup.selected.after(el);
+    }
   },
-  insertBefore: function (target, el){
-    target.before(el);
+  insertBefore: function (){
+    if (markup.selected){
+      const el = markup.createElement(markup.getEdits());
+      markup.selected.after(el);
+    }
   },
   insertContainer: function (){
     const container = document.getElementById(markup.ids.inner_container);
