@@ -13,6 +13,33 @@ const markup = {
     inner_container: 'MU_container',
     selected: 'MU_selected',
   },
+  insertIntoPossible: [
+    'div',
+    'p',
+    
+    'ul',
+    'ol',
+    'li',
+    
+    'main',
+    'article',
+    'aside',
+    'section',
+    'header',
+    'footer',
+    'nav',
+    'hgroup',
+    
+    'table',
+    'thead',
+    'tbody',
+    'tr',
+    'colgroup',
+    'col',
+    
+    'form',
+    'fieldset',
+  ],
   ValidElements: {
     a: 'Uncategorized',
     div: 'Uncategorized',
@@ -127,6 +154,13 @@ const markup = {
     ins_before_btn.innerHTML = 'Insert before selected';
     ins_before_btn.onclick = markup.insertBefore;
     form_fs.appendChild(ins_before_btn);
+    form_fs.appendChild(ins_after_btn);
+    
+    // Button that inserts new element after selected element
+    const ins_into_btn = document.createElement('button');
+    ins_into_btn.innerHTML = 'Insert into selected';
+    ins_into_btn.onclick = markup.insertInto;
+    form_fs.appendChild(ins_into_btn);
 
     // Values/settings of new or selected element
     
@@ -206,10 +240,10 @@ const markup = {
     }
   },
   getEdits: function (){
-    const type = document.getElementById(markup.ids.editor_type).value;
-    const inner_html = document.getElementById(markup.ids.editor_inner_html).value;
+    const type = markup.getTypeValue();
+    const inner_html = markup.getInnerHTMLValue();
     let attr = {};
-    let tmp = document.getElementById(markup.ids.editor_attr).value;
+    let tmp = markup.getAttrValue();
     if (tmp){
       tmp = tmp.split(',');
       tmp.forEach((kv) => { let _ = kv.split(' '); attr[_[0]] = _[1] });
@@ -218,6 +252,15 @@ const markup = {
       attr = null;
     }
     return { type: type, inner_html: inner_html, attr: attr };
+  },
+  getTypeValue: function (){
+    return document.getElementById(markup.ids.editor_type).value;
+  },
+  getInnerHTMLValue: function (){
+    return document.getElementById(markup.ids.editor_inner_html).value;
+  },
+  getAttrValue: function (){
+    return document.getElementById(markup.ids.editor_attr).value;
   },
   appendElement: function (parent, el){
     parent.appendChild(el);
@@ -232,6 +275,14 @@ const markup = {
     if (markup.selected){
       const el = markup.createElement(markup.getEdits());
       markup.selected.before(el);
+    }
+  },
+  insertInto: function (){
+    if (markup.selected){
+      if (markup.insertIntoPossible.includes(markup.getTypeValue())){
+        const el = markup.createElement(markup.getEdits());
+        markup.selected.appendChild(el);
+      }
     }
   },
   insertContainer: function (){
