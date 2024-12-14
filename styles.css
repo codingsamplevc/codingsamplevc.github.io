@@ -70,5 +70,6 @@ td.dead {
 
 #MU_container *:is(ul,ol) {
   margin: 5px 2px;
+  padding: 10px;
   outline: 3px dashed green;
 }
