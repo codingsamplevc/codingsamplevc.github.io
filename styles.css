@@ -68,7 +68,7 @@ td.dead {
   width: fit-content;
 }
 
-#MU_container :is(ul,ol) {
+#MU_container *:is(ul,ol) {
   margin: 5px 2px;
   outline: 3px spotted green;
 }
