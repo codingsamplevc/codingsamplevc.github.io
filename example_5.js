@@ -30,7 +30,7 @@ const test = {
     test.printBoard();
   },
   printBoard: function (){
-    console.log(test.board);
+    console.log(JSON.stringify(test.board));
   },
   changeCell: function (coords, val){
     if (test.board){
