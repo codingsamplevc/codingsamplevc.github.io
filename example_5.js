@@ -10,7 +10,9 @@ const test = {
     // Array.from(Array(test.len), (a) => { Array.from(Array(test.len), (b) => ' ') })
     const board = Array.from(
       Array(test.len),
-      (a) => { Array.from(Array(test.len), (b) => ' ') });
+      (a) => a = Array.from(
+        Array(test.len),
+        (b) => b = ' ') );
     test.board = board;
 
     test.printBoard();
