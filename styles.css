@@ -88,7 +88,7 @@ td.dead {
 @property --sudoku-cell-size {
   syntax: "<length> | auto";
   inherits: false;
-  initial-value: calc(var(--sudoku-table-size)/9);
+  initial-value: var(--sudoku-table-size)/9;
 }
 
 #js_5 table {
