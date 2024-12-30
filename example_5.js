@@ -3,13 +3,14 @@
 
 const sudoku = {
   ids: {
-    container_id: 'js_5',
+    container_id: '',
     table: 'sudoku',
     cell_prefix: 'sudo'
   },
   len: 9,
   board: null,
   setupBoard: function (container_id){
+    sudoku.ids.container_id = container_id;
     // Array(sudoku.len).fill(Array(sudoku.len).fill(' '))
     // Array(sudoku.len).fill(Array(sudoku.len).fill(' '))
     // Array.from(Array(sudoku.len), (a) => { Array.from(Array(sudoku.len), (b) => ' ') })
@@ -19,6 +20,8 @@ const sudoku = {
         Array(sudoku.len),
         (b) => b = ' ') );
     sudoku.board = board;
+    
+    sudoku.makeTable();
 
     // sudoku.printBoard();
 
@@ -45,14 +48,14 @@ const sudoku = {
   makeTable: function (){
   
     function ret_cell(id){
-    const cell = document.createElement("td");
-    cell.id = id;
-    const inputfield = document.createElement("input");
-    inputfield.type = 'text';
-    inputfield.maxlength = 1;
-    inputfield.addEventListener('change', sudoku.updateListener);
-    cell.innerHTML = inputfield;
-    return cell;
+      const cell = document.createElement("td");
+      cell.id = id;
+      const inputfield = document.createElement("input");
+      inputfield.type = 'text';
+      inputfield.maxlength = 1;
+      inputfield.addEventListener('change', sudoku.updateListener);
+      cell.innerHTML = inputfield;
+      return cell;
     }
   
     function ret_cellrow(i){
