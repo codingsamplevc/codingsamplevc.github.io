@@ -52,8 +52,9 @@ const sudoku = {
       cell.id = id;
       const inputfield = document.createElement("input");
       inputfield.type = 'text';
-      inputfield.maxlength = 1;
-      inputfield.size = 1;
+      inputfield.setAttribute('maxlength', 1);
+      // inputfield.size = 1;
+      inputfield.setAttribute('size', 1);
       inputfield.addEventListener('change', sudoku.updateListener);
       cell.appendChild(inputfield);
       return cell;
