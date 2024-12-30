@@ -53,7 +53,6 @@ const sudoku = {
       const inputfield = document.createElement("input");
       inputfield.type = 'text';
       inputfield.setAttribute('maxlength', 1);
-      // inputfield.size = 1;
       inputfield.setAttribute('size', 1);
       inputfield.addEventListener('change', sudoku.updateListener);
       cell.appendChild(inputfield);
@@ -91,7 +90,9 @@ const sudoku = {
   },
   updateListener: function (e){
     let coords = e.target.parentElement.id.split('_').filter((el) => !Number.isNaN(el));
-    sudoku.changeCell({ row: coords[0], col: coords[1] }, e.target.value);
+    coords = { row: coords[0], col: coords[1] };
+    // sudoku.changeCell(coords = { row: coords[0], col: coords[1] }, val = e.target.value);
+    sudoku.changeCell(coords, e.target.value);
   },
   updateTable: function (){
     const values = sudoku.board;
