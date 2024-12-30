@@ -3,14 +3,14 @@
 
 const sudoku = {
   ids: {
-    container_id: '',
+    container: '',
     table: 'sudoku',
     cell_prefix: 'sudo'
   },
   len: 9,
   board: null,
   setupBoard: function (container_id){
-    sudoku.ids.container_id = container_id;
+    sudoku.ids.container = container;
     // Array(sudoku.len).fill(Array(sudoku.len).fill(' '))
     // Array(sudoku.len).fill(Array(sudoku.len).fill(' '))
     // Array.from(Array(sudoku.len), (a) => { Array.from(Array(sudoku.len), (b) => ' ') })
@@ -70,14 +70,14 @@ const sudoku = {
     
     if (!document.getElementById(sudoku.ids.table)){
       const table = document.createElement("table");
-      table.id = ttt.table_id;
+      table.id = sudoku.ids.table;
       
       for (let i = 0; i < sudoku.len; i++){
         const row = ret_cellrow(i);
         table.appendChild(row);
       }
       
-      const container = document.getElementById(sudoku.ids.container_id);
+      const container = document.getElementById(sudoku.ids.container);
       container.appendChild(table);
   
       // const game_status_el = document.createElement("p");
