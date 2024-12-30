@@ -22,6 +22,8 @@ form, fieldset {
   align-items: flex-start;
 }
 
+/* Game of Life specific */
+
 table#gol_board {
   border: 1px solid;
   width: auto;
@@ -42,6 +44,7 @@ td.dead {
   background-color: white;
 }
 
+/* Markup specific */
 
 #js_4 form input, #js_4 form button {
   margin: 2px;
@@ -74,6 +77,35 @@ td.dead {
   outline: 3px dashed green;
 }
 
+/* Sudoku specific */
+
+@property --sudoku-table-size {
+  syntax: "<length> | auto";
+  inherits: false;
+  initial-value: 200px;
+}
+
+@property --sudoku-cell-size {
+  syntax: "<length> | auto";
+  inherits: false;
+  initial-value: calc(var(--sudoku-table-size)/9);
+}
+
+#js_5 table {
+  margin: 20px;
+  border: 4px solid;
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: var(--sudoku-table-size);
+  height: var(--sudoku-table-size);
+}
+
+#js_5 td {
+  border: 2px solid;
+  overflow: hidden;
+  text-align: center;
+  vertical-align: middle;
+}
 
 #js_5 table td input {
   width: 100%;
@@ -81,7 +113,8 @@ td.dead {
   text-align: center;
   vertical-align: middle;
   font-size: 2em;
-  border-collapse: collapse;
+  box-sizing: border-box;
+/*   border-collapse: collapse; */
 }
 
 #js_5 table {
