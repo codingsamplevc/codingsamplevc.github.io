@@ -89,12 +89,12 @@ const sudoku = {
     }
   },
   updateListener: function (e){
-    let coords = e.target.parentElement.id.split('_');
-    console.log(coords);
-    coords = coords.filter((x) => typeof Number.parseInt(x) == "number");
-    console.log(coords);
+    const coords = e.target.parentElement.id.split('_');
+    console.log(Array(coords));
+    coords = coords.filter((x) => !Number.isNaN(x));
+    console.log(Array(coords));
     coords = { row: parseInt(coords[0]), col: parseInt(coords[1]) };
-    console.log(coords);
+    console.log(Object(coords));
     sudoku.changeCell(coords, e.target.value);
   },
   updateTable: function (){
