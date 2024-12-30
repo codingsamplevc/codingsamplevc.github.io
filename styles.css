@@ -73,3 +73,11 @@ td.dead {
   padding: 10px;
   outline: 3px dashed green;
 }
+
+
+#js_5 table td input {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  vertical-align: middle;
+}
