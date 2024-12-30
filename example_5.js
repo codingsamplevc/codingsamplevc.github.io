@@ -1,5 +1,5 @@
 
-// sudoku
+// Sudoku
 
 const sudoku = {
   ids: {
@@ -96,7 +96,8 @@ const sudoku = {
 
     for (let i = 0; i < sudoku.len; i++){
       for (let j = 0; j < sudoku.len; j++){
-        sudoku.board[i][j]
+        const table_cell = document.getElementById(`${sudoku.ids.cell_prefix}_${i}_${j}`);
+        table_cell.firstChild.value = values[i][j];
       }
     }
   },
