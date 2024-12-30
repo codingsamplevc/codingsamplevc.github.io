@@ -54,7 +54,7 @@ const sudoku = {
       inputfield.type = 'text';
       inputfield.maxlength = 1;
       inputfield.addEventListener('change', sudoku.updateListener);
-      cell.innerHTML = inputfield;
+      cell.appendChild(inputfield);
       return cell;
     }
   
