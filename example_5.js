@@ -10,7 +10,7 @@ const sudoku = {
   len: 9,
   board: null,
   setupBoard: function (container_id){
-    sudoku.ids.container = container;
+    sudoku.ids.container = container_id;
     // Array(sudoku.len).fill(Array(sudoku.len).fill(' '))
     // Array(sudoku.len).fill(Array(sudoku.len).fill(' '))
     // Array.from(Array(sudoku.len), (a) => { Array.from(Array(sudoku.len), (b) => ' ') })
