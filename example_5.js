@@ -89,7 +89,9 @@ const sudoku = {
     }
   },
   updateListener: function (e){
-    let coords = e.target.parentElement.id.split('_').filter((el) => !(Number.isNaN(el)));
+    let coords = e.target.parentElement.id.split('_');
+    console.log(coords);
+    coords = coords.filter((el) => !(Number.isNaN(el)))
     console.log(coords);
     coords = { row: parseInt(coords[0]), col: parseInt(coords[1]) };
     console.log(coords);
