@@ -90,8 +90,8 @@ const sudoku = {
     }
   },
   updateListener: function (e){
-    let coords = e.parentElement.id.split('_').filter((el) => !Number.isNaN(el));
-    sudoku.changeCell({ row: coords[0], col: coords[1] }, e.value);
+    let coords = e.target.parentElement.id.split('_').filter((el) => !Number.isNaN(el));
+    sudoku.changeCell({ row: coords[0], col: coords[1] }, e.target.value);
   },
   updateTable: function (){
     const values = sudoku.board;
