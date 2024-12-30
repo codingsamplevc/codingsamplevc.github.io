@@ -89,13 +89,13 @@ const sudoku = {
     }
   },
   updateListener: function (e){
-    let coords = e.target.parentElement.id.split('_');
+    let coords = e.target.parentElement.id.split('_').filter((x) => !(Number.isNaN(Number.parseInt(x))));
     console.log(Array(coords));
-    coords = coords.filter((x) => !(Number.isNaN(Number.parseInt(x))));
-    console.log(Array(coords));
-    coords = { row: parseInt(coords[0]), col: parseInt(coords[1]) };
-    console.log(Object(coords));
-    sudoku.changeCell(coords, e.target.value);
+    // coords = coords.filter((x) => !(Number.isNaN(Number.parseInt(x))));
+    // console.log(Array(coords));
+    // coords = { row: parseInt(coords[0]), col: parseInt(coords[1]) };
+    // console.log(Object(coords));
+    sudoku.changeCell({ row: parseInt(coords[0]), col: parseInt(coords[1]) }, e.target.value);
     e.stopPropagation();
   },
   updateTable: function (){
