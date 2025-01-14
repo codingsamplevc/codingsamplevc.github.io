@@ -20,3 +20,7 @@ class MyButton extends React.Component{
     );
   }
 }
+
+const domContainer = document.querySelector('#react_container_1');
+const root = ReactDOM.createRoot(domContainer);
+root.render(elem(MyButton));
