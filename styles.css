@@ -30,6 +30,7 @@ nav {
   background-color: #eee;
 }
 nav * {
+  padding: .2em;
   border: 2px solid #000;
   border-radius: 8px;
 }
