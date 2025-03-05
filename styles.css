@@ -22,8 +22,9 @@ form, fieldset {
   align-items: flex-start;
 }
 nav {
-  width: auto;
-  height: auto;
+  width: fit-content;
+  height: fit-content;
+  block-size: fit-content;
   margin: 10px;
   padding: 6px;
   background-color: #eee;
