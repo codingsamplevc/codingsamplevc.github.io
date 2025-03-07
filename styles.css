@@ -30,8 +30,6 @@ nav {
   background-color: #eee;
   border-radius: 32px;
 }
-nav * {
-  padding: 6px;
-  border: 1px solid #333;
-  border-radius: 4px;
+nav a {
+  padding: 4px;
 }
