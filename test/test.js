@@ -11,9 +11,9 @@ const test = {
       // circle_black: this.createSVG_Circle('black'),
     },
   },
-  createSVG_Circle: (color) => {
-    const _svg = document.createElement('svg', { width: test.constants.svg.circle_size, height: test.constants.svg.circle_size });
-    const _circle = document.createElement('circle', { cx: test.constants.svg.circle_xy, cy: test.constants.svg.circle_xy, r: test.constants.svg.circle_r, style: `fill:${color}` });
+  createSVG_Circle: (size,xy,r,color) => {
+    const _svg = document.createElement('svg', { width: size, height: size });
+    const _circle = document.createElement('circle', { cx: xy, cy: xy, r: r: `fill:${color}` });
     _svg.append(_circle);
     return _svg;
   },
@@ -22,4 +22,4 @@ const test = {
     c.append(element);
   },
 };
-test.attach_SVG_toContainer(test.createSVG_Circle('red'));
+test.attach_SVG_toContainer(test.createSVG_Circle(test.constants.svg.circle_size,test.constants.svg.circle_xy,test.constants.svg.circle_r,'red'));
