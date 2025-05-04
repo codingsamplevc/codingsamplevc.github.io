@@ -7,8 +7,8 @@ const test = {
       circle_size: 50,
       circle_xy: this.circle_size / 2,
       circle_r: this.circle_xy / 2,
-      circle_red: this.createSVG_Circle('red'),
-      circle_black: this.createSVG_Circle('black'),
+      // circle_red: this.createSVG_Circle('red'),
+      // circle_black: this.createSVG_Circle('black'),
     },
   },
   createSVG_Circle: (color) => {
