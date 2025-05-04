@@ -13,7 +13,13 @@ const test = {
   },
   createSVG_Circle: (size,xy,radius,color) => {
     const _svg = document.createElement('svg', { width: size, height: size });
+    _svg.width = size;
+    _svg.height = size;
     const _circle = document.createElement('circle', { cx: xy, cy: xy, r: radius, style: `fill:${color}` });
+    _circle.cx = xy;
+    _circle.cy = xy;
+    _circle.r = radius;
+    _circle.style = `fill:${color}`;
     _svg.append(_circle);
     return _svg;
   },
