@@ -5,8 +5,8 @@ const test = {
     },
     svg: {
       circle_size: 50,
-      circle_xy: test.constants.svg.circle_size / 2,
-      circle_r: test.constants.svg.circle_xy / 2,
+      circle_xy: this.circle_size / 2,
+      circle_r: this.circle_xy / 2,
       circle_red: test.createSVG_Circle('red'),
       circle_black: test.createSVG_Circle('black'),
     },
