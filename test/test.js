@@ -22,4 +22,4 @@ const test = {
     c.append(element);
   },
 };
-test.attach_SVG_toContainer(test.constants.svg.circle_red);
+test.attach_SVG_toContainer(test.createSVG_Circle('red'));
