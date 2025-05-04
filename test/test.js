@@ -13,7 +13,7 @@ const test = {
   },
   createSVG_Circle: (color) => {
     const _svg = document.createElement('svg', { width: this.constants.svg.circle_size, height: this.constants.svg.circle_size });
-    const _circle = document.createElement('circle', { cx: this.constants.svg.circle_xy, cy: this.constants.svg.circle_xy, r: test.constants.svg.circle_r, style: `fill:${color}` });
+    const _circle = document.createElement('circle', { cx: this.constants.svg.circle_xy, cy: this.constants.svg.circle_xy, r: this.constants.svg.circle_r, style: `fill:${color}` });
     _svg.innerHTML = _circle;
     return _svg;
   },
