@@ -11,9 +11,9 @@ const test = {
       // circle_black: this.createSVG_Circle('black'),
     },
   },
-  createSVG_Circle: (size,xy,r,color) => {
+  createSVG_Circle: (size,xy,radius,color) => {
     const _svg = document.createElement('svg', { width: size, height: size });
-    const _circle = document.createElement('circle', { cx: xy, cy: xy, r: r: `fill:${color}` });
+    const _circle = document.createElement('circle', { cx: xy, cy: xy, r: radius, color:`fill:${color}` });
     _svg.append(_circle);
     return _svg;
   },
