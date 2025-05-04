@@ -1,7 +1,7 @@
 const test = {
   constants: {
     refs: {
-      svg_container: document.getElementById('svg_container'),
+      svg_container: 'svg_container',
     },
     svg: {
       circle_size: 50,
@@ -18,7 +18,8 @@ const test = {
     return _svg;
   },
   attach_SVG_toContainer: (element) => {
-    this.contants.refs.svg_container.append(element);
+    const c = document.getElementById('svg_container');
+    c.append(element);
   },
 };
 test.attach_SVG_toContainer(test.constants.svg.circle_red);
