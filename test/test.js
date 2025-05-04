@@ -21,3 +21,4 @@ const test = {
     this.contants.refs.svg_container.append(element);
   },
 };
+test.attach_SVG_toContainer(test.constants.svg.circle_red);
