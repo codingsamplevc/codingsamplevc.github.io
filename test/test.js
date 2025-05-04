@@ -24,7 +24,12 @@ const test = {
     // _circle.style = `fill:${color}`;
     // _svg.append(_circle);
 
-
+    //var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    // svg.setAttribute('style', 'border: 1px solid black');
+    // svg.setAttribute('width', '600');
+    // svg.setAttribute('height', '250');
+    // svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
+    // document.body.appendChild(svg);
     
     // Create the `style` element in the SVG namespace
     const style = document.createElementNS("http://www.w3.org/2000/svg", "style");
