@@ -12,7 +12,7 @@ const test = {
     },
   },
   createSVG_Circle: (size,xy,radius,color) => {
-    const _svg = document.createElement('svg', { width: size, height: size });
+    // const _svg = document.createElement('svg', { width: size, height: size });
     // _svg.xmlns = "http://www.w3.org/2000/svg"; // Add attributes
     // _svg.xmlns:xlink="http://www.w3.org/1999/xlink"
     // _svg.width = size;
@@ -24,21 +24,30 @@ const test = {
     // _circle.style = `fill:${color}`;
     // _svg.append(_circle);
 
-    //var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    // svg.setAttribute('style', 'border: 1px solid black');
-    // svg.setAttribute('width', '600');
-    // svg.setAttribute('height', '250');
-    // svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
+    const _svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    _svg.setAttribute('width', `${size}`);
+    _svg.setAttribute('height', `${size}`);
+    // _svg.setAttribute('style', `fill: ${}`);
+    _svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
+
+    // const _circle = document.createTextNode("circle { cx: 25; cy: 25; r: 12.5; fill: red; }"); // cx: 25, cy: 25, r: 12.5, 
+    const _circle = document.createElementNS("http://www.w3.org/2000/svg", "circle"); // cx: 25, cy: 25, r: 12.5, 
+    _circle.setAttribute('cx', `${xy}`);
+    _circle.setAttribute('cy', `${xy}`);
+    _circle.setAttribute('r', `${radius}`);
+    _circle.setAttribute('style', `fill: ${color}`);
+    
     // document.body.appendChild(svg);
     
     // Create the `style` element in the SVG namespace
-    const style = document.createElementNS("http://www.w3.org/2000/svg", "style");
-    const node = document.createTextNode("circle { fill: red; }"); // cx: 25, cy: 25, r: 12.5, 
-    style.appendChild(node);
+    // const style = document.createElementNS("http://www.w3.org/2000/svg", "style");
+    // const node = document.createTextNode("circle { fill: red; }"); // cx: 25, cy: 25, r: 12.5, 
+    // style.appendChild(node);
     
     // Append the style element to the SVG element
-    _svg.appendChild(style);
+    // _svg.appendChild(style);
 
+    _svg.appendChild(_circle);
 
     return _svg;
 
