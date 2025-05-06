@@ -32,9 +32,9 @@ const test = {
 
     // const _circle = document.createTextNode("circle { cx: 25; cy: 25; r: 12.5; fill: red; }"); // cx: 25, cy: 25, r: 12.5, 
     const _circle = document.createElementNS("http://www.w3.org/2000/svg", "circle"); // cx: 25, cy: 25, r: 12.5, 
-    _circle.setAttribute('cx', `${xy}`);
-    _circle.setAttribute('cy', `${xy}`);
-    _circle.setAttribute('r', `${radius}`);
+    _circle.setAttributeNS('cx', `${xy}`);
+    _circle.setAttributeNS('cy', `${xy}`);
+    _circle.setAttributeNS('r', `${radius}`);
     _circle.setAttribute('style', `fill: ${color}`);
     
     // document.body.appendChild(svg);
