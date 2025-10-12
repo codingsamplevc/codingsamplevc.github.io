@@ -1,1 +1,6 @@
+# local env
+/local/
+*.env
+
+# CSS/SASS
 *.css.map
