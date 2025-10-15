@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="/src/css/style.min.css">
   <link rel="stylesheet" href="/src/css/js_examples.css">
   <title>My page</title>
-  <script src="src/js/example_1.js"></script>
+  <script defer src="src/js/example_1.js"></script>
   <script src="src/js/example_2.js"></script>
   <script src="src/js/example_3.js"></script>
   <script src="src/js/example_4.js"></script>
@@ -24,8 +24,8 @@
   <br>
   <hr />
   <br>
-  <div id="js_1">
-    <button id="createTTT" type="button" onclick="ttt.createBoard('js_1')">Create TicTacToe board</button>
+  <div class="tictactoe-container">
+    <button class="tictactoe-btn" type="button">Create/reset TicTacToe board</button>
     <!-- JavaScript example 1: TicTacToe game -->
     <p>TicTacToe board</p>
   </div>
