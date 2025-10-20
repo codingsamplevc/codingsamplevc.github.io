@@ -4,4 +4,4 @@ Showcase of some JavaScript examples.
 
 Click the link to go to the showcase.
 
-[codingsamplevc.github.io](https://codingsamplevc.github.io/)
+<a href="https://codingsamplevc.github.io/" target="_blank">codingsamplevc.github.io</a>
