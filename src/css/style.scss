@@ -78,122 +78,127 @@ body {
 
 /* TicTacToe */
 
-.tictactoe-container {
+.tictactoe-container{
   border: 10px solid var(--border-clr);
-}
-
-.tictactoe-board {
-  margin: 20px;
-  border: 4px outset black;
-  // border-style: outset;
-  border-collapse: collapse;
-  table-layout: fixed;
-  width: var(--tictactoe-table-cell-size);
-  height: var(--tictactoe-table-cell-size);
   
-  td {
-    border: 2px dashed darkgray;
-    overflow: hidden;
-    text-align: center;
+  .tictactoe-board {
+    margin: 20px;
+    border: 4px outset black;
+    // border-style: outset;
+    border-collapse: collapse;
+    table-layout: fixed;
     width: var(--tictactoe-table-cell-size);
-    height: var(--tictactoe-table-cell-size);;
+    height: var(--tictactoe-table-cell-size);
+    
+    td {
+      border: 2px dashed darkgray;
+      overflow: hidden;
+      text-align: center;
+      width: var(--tictactoe-table-cell-size);
+      height: var(--tictactoe-table-cell-size);;
+    }
   }
 }
 
+
 /* Game of Life specific */
 
-table#gol_board {
-  border: 1px solid;
-  width: auto;
-  height: auto;
-}
-
-table#gol_board td {
-  border: none;
-  width: 30px;
-  height: 30px;
-}
-
-td.alive {
-  background-color: black;
-}
-
-td.dead {
-  background-color: white;
+.gameoflife-container {
+  #gol_board {
+    border: 1px solid;
+    width: auto;
+    height: auto;
+  }
+  
+  #gol_board td {
+    border: none;
+    width: 30px;
+    height: 30px;
+  }
+  
+  td.alive {
+    background-color: black;
+  }
+  
+  td.dead {
+    background-color: white;
+  }
 }
 
 /* Markup specific */
 
-#js_4 form input, #js_4 form button {
-  margin: 2px;
-}
-
-#MU_container {
-  display: block;
-  outline: 10px solid gray;
-}
-
-#MU_container #MU_selected {
-  color: lightblue;
-  background-color: darkblue;
-  opacity: 0.5;
-}
-
-#MU_container :hover {
-  color: blue;
-  background-color: darkblue;
-  opacity: 1;
-}
-
-#MU_container * {
-  width: fit-content;
-}
-
-#MU_container *:is(ul,ol) {
-  margin: 5px 2px;
-  padding: 10px;
-  outline: 3px dashed green;
+.markup-container {
+  form input, form button {
+    margin: 2px;
+  }
+  
+  #MU_container {
+    display: block;
+    outline: 10px solid gray;
+  }
+  
+  #MU_container #MU_selected {
+    color: lightblue;
+    background-color: darkblue;
+    opacity: 0.5;
+  }
+  
+  #MU_container :hover {
+    color: blue;
+    background-color: darkblue;
+    opacity: 1;
+  }
+  
+  #MU_container * {
+    width: fit-content;
+  }
+  
+  #MU_container *:is(ul,ol) {
+    margin: 5px 2px;
+    padding: 10px;
+    outline: 3px dashed green;
+  }
 }
 
 /* Sudoku specific */
 
-@property --sudoku-table-size {
-  syntax: "<length> | auto";
-  inherits: false;
-  initial-value: 200px;
-}
+// @property --sudoku-table-size {
+//   syntax: "<length> | auto";
+//   inherits: false;
+//   initial-value: 200px;
+// }
 
-@property --sudoku-cell-size {
-  syntax: "<length> | auto";
-  inherits: false;
-  initial-value: var(--sudoku-table-size)/9;
-}
+// @property --sudoku-cell-size {
+//   syntax: "<length> | auto";
+//   inherits: false;
+//   initial-value: var(--sudoku-table-size)/9;
+// }
 
-#js_5 table {
-  margin: 20px;
-  border: 4px solid;
-  border-collapse: collapse;
-  table-layout: fixed;
-  width: var(--sudoku-table-size);
-  height: var(--sudoku-table-size);
-}
+// #js_5 table {
+//   margin: 20px;
+//   border: 4px solid;
+//   border-collapse: collapse;
+//   table-layout: fixed;
+//   width: var(--sudoku-table-size);
+//   height: var(--sudoku-table-size);
+// }
 
-#js_5 td {
-  border: 2px solid;
-  overflow: hidden;
-  text-align: center;
-  vertical-align: middle;
-}
+// #js_5 td {
+//   border: 2px solid;
+//   overflow: hidden;
+//   text-align: center;
+//   vertical-align: middle;
+// }
 
-#js_5 table td input {
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  vertical-align: middle;
-  font-size: 2em;
-  box-sizing: border-box;
-/*   border-collapse: collapse; */
-}
+// #js_5 table td input {
+//   width: 100%;
+//   height: 100%;
+//   text-align: center;
+//   vertical-align: middle;
+//   font-size: 2em;
+//   box-sizing: border-box;
+// /*   border-collapse: collapse; */
+// }
 /* 
 #js_5 table {
   margin: 20px;
