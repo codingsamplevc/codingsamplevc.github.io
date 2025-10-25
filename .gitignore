@@ -1,5 +1,5 @@
 # local env
-/test/
+/test*/
 /local/
 *.env
 
