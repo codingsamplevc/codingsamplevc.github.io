@@ -104,13 +104,13 @@ body {
 /* Game of Life specific */
 
 .gameoflife-container {
-  #gol_board {
+  .gameoflife-board {
     border: 1px solid;
     width: auto;
     height: auto;
   }
   
-  #gol_board td {
+  .gameoflife-board td {
     border: none;
     width: 30px;
     height: 30px;
