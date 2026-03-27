@@ -25,7 +25,7 @@ class GameOfLife {
     this.#elements.container = document.querySelector(`.${this.#classNames.container}`);
     if (!(document.querySelector(`.${this.#classNames.board}`)) && this.#elements.container) {
       this.#createBoard();
-    }
+    } else { this.#elements.container = null; }
   }
 
   #getAdjacent(x_index, y_index, x_index_max, y_index_max) {
