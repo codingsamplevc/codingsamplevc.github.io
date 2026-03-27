@@ -110,7 +110,7 @@ class GameOfLife {
     // if (!this.#elements.autoTimer) { return; }
     this.#autoSimOn = !this.#autoSimOn;
     if (this.#autoSimOn) {
-      this.#elements.autoTimer = setInterval(this.#advance, 1500);
+      this.#elements.autoTimer = setInterval(() => this.#advance(), 1500);
     } else {
       clearInterval(this.#elements.autoTimer);
     }
@@ -143,7 +143,7 @@ class GameOfLife {
     const advanceBtn = document.createElement("button");
     this.#elements.advanceBtn = advanceBtn;
     advanceBtn.innerText = "Advance";
-    advanceBtn.addEventListener("click", this.#advance);
+    advanceBtn.addEventListener("click", () => this.#advance());
 
     this.#elements.container.appendChild(advanceBtn);
 
@@ -151,7 +151,7 @@ class GameOfLife {
     this.#elements.autoBtn = autoBtn;
     autoBtn.className = this.#classNames.autoBtn;
     autoBtn.innerText = "Start/stop automatic simulation";
-    autoBtn.addEventListener("click", this.#autoSimulation);
+    autoBtn.addEventListener("click", () => this.#autoSimulation());
 
     this.#elements.container.appendChild(autoBtn);
   }
