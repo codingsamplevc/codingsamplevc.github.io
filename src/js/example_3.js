@@ -157,4 +157,4 @@ class GameOfLife {
   }
 }
 
-GameOfLife();
+new GameOfLife();
