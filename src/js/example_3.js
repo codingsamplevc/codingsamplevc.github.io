@@ -128,7 +128,7 @@ class GameOfLife {
         cell.id = `${i}_${j}`;
         cell.className = "dead";
         row.appendChild(cell);
-        cell.addEventListener("click", this.#handleCellClick);
+        cell.addEventListener("click", (e) => this.#handleCellClick(e));
         this.#gameState[`${i}_${j}`] = 0;
       }
       board.appendChild(row);
