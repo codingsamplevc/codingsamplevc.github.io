@@ -107,7 +107,6 @@ class GameOfLife {
   }
 
   #autoSimulation() {
-    // if (!this.#elements.autoTimer) { return; }
     this.#autoSimOn = !this.#autoSimOn;
     if (this.#autoSimOn) {
       this.#elements.autoTimer = setInterval(() => this.#advance(), 1500);
