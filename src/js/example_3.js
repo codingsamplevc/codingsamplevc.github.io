@@ -6,7 +6,6 @@ class GameOfLife {
   #autoSimOn = false;
   #classNames = {
     container: "gameoflife-container",
-    description: "gameoflife-description",
     board: "gameoflife-board",
     advanceBtn: "gameoflife-adv-btn",
     autoBtn: "gameoflife-auto-btn",
