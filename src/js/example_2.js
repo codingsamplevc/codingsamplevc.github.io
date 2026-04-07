@@ -16,94 +16,83 @@ class CSSPlayground {
     containerBtn: null,
     stylingForm: null,
     demoContainer: null,
-    demoText: null,
+    demoText_1: null,
     applyStylingBtn: null,
     cssCodeDescription: null,
     cssCodeBlock: null
   };
   #stylingOptions = [
-    [{desc: "Text color", name: "color", type: "color"}, {}],
-    [{desc: "Font size", name: "font-size", type: "number"}, {min: 6, max: 50, value: 16}],
-    [{desc: "Font (family)", name: "font-family", type: "text"}, {"font-family": ''}]
+    { desc: "Text color", name: "color", type: "color", val: null },
+    { desc: "Font size", name: "font-size", type: "number", val: { min: 6, max: 50, value: 16 } },
+    { desc: "Font (family)", name: "font-family", type: "text", val: {"font-family": ''} }
   ];
 
   constructor() {
+    if (!(document.querySelector(`.${this.#classNames.container}`)) || document.querySelector(`.${this.#classNames.stylingForm}`)) { return; }
     this.#elements.container = document.querySelector(`.${this.#classNames.container}`);
     this.#elements.containerBtn = document.querySelector(`.${this.#classNames.containerBtn}`);
     this.#elements.containerBtn.addEventListener("click", () => this.#setup());
   }
 
   #setup() {
-    if (this.#elements.container) {
+    if (document.querySelector(`.${this.#classNames.demoContainer}`)) { return; }
 
-      if (this.#elements.stylingForm){ return; }
-      
-      const form = document.createElement("form");
-      form.classList.add(this.#classNames.stylingForm);
-      this.#elements.stylingForm = form;
-      
-      // const rules = [
-      //   [{desc: "Text color", name: "color", type: "color"}, {}],
-      //   [{desc: "Font size", name: "font-size", type: "number"}, {min: 6, max: 50, value: 16}],
-      //   [{desc: "Font (family)", name: "font-family", type: "text"}, {"font-family": ''}]
-      // ];
-  
-      for (const rule of this.#stylingOptions){
-        const label = document.createElement("label");
-        label.innerHTML = rule[0].desc;
-        label.setAttribute("for", rule[0].name);
-        form.appendChild(label);
-        
-        const input = document.createElement("input");
-        input.name = rule[0].name;
-        input.type = rule[0].type;
-        
-        if (Object.keys(rule[1]).length > 0){
-          for (const attr in rule[1]){
-            input[attr] = rule[1][attr];
-          }
+    const container = this.#elements.container;
+
+    const form = document.createElement("form");
+    form.classList.add(this.#classNames.stylingForm);
+    this.#elements.stylingForm = form;
+    container.appendChild(form);
+
+    for (const rule of this.#stylingOptions) {
+      const label = document.createElement("label");
+      label.setAttribute("for", rule.name);
+      label.innerHTML = rule.desc;
+      form.appendChild(label);
+
+      const input = document.createElement("input");
+      input.name = rule.name;
+      input.type = rule.type;
+      label.appendChild(input);
+
+      if (rule.val) {
+        for (const attr in rule.val) {
+          input[attr] = rule.val[attr];
         }
-        label.appendChild(input);
       }
-  
-      const container = this.#elements.container;
-  
-      const demoContainer = document.createElement("div");
-      demoContainer.classList.add(this.#classNames.demoContainer);
-      this.#elements.demoContainer = demoContainer;
-      container.appendChild(demoContainer);
-      
-      const demoText = document.createElement("p");
-      demoText.classList.add(this.#classNames.demoText);
-      this.#elements.demoText = demoText;
-      demoContainer.appendChild(demoText);
-      demoText.innerHTML = "Change the appearance of this text through the inputs.";
-      
-      container.appendChild(form);
-  
-      const BR_TAG = document.createElement("br");
-      container.appendChild(BR_TAG);
-  
-      const applyStylingButton = document.createElement("button");
-      applyStylingButton.classList.add(this.#classNames.applyStylingBtn);
-      this.#elements.applyStylingBtn = applyStylingButton;
-      applyStylingButton.innerHTML = "Apply styling";
-      container.appendChild(applyStylingButton);
-      applyStylingButton.addEventListener("click", () => this.#applyStyling());
-  
-      const cssCodeDescription = document.createElement("p");
-      cssCodeDescription.classList.add(this.#classNames.cssCodeDescription);
-      this.#elements.cssCodeDescription = cssCodeDescription;
-      cssCodeDescription.innerHTML = "Below are the rules for the CSS styles";
-      container.appendChild(cssCodeDescription);
-  
-      const cssCodeBlock = document.createElement("code");
-      cssCodeBlock.classList.add(this.#classNames.cssCodeBlock);
-      this.#elements.cssCodeBlock = cssCodeBlock;
-      cssCodeBlock.style.display = "block";
-      cssCodeBlock.style.whiteSpace = "pre";
-      container.appendChild(cssCodeBlock);
     }
+  
+    const applyStylingButton = document.createElement("button");
+    this.#elements.applyStylingBtn = applyStylingButton;
+    // applyStylingButton.classList.add(this.#classNames.applyStylingBtn);
+    applyStylingButton.innerHTML = "Apply styling";
+    applyStylingButton.addEventListener("click", () => this.#applyStyling());
+    container.appendChild(applyStylingButton);
+
+    const cssCodeDescription = document.createElement("p");
+    // cssCodeDescription.classList.add(this.#classNames.cssCodeDescription);
+    // this.#elements.cssCodeDescription = cssCodeDescription;
+    cssCodeDescription.innerHTML = "Below are the rules for the CSS styles";
+    container.appendChild(cssCodeDescription);
+
+    const cssCodeBlock = document.createElement("code");
+    this.#elements.cssCodeBlock = cssCodeBlock;
+    // cssCodeBlock.classList.add(this.#classNames.cssCodeBlock);
+    // this.#elements.cssCodeBlock = cssCodeBlock;
+    cssCodeBlock.style.display = "block";
+    cssCodeBlock.style.whiteSpace = "pre";
+    container.appendChild(cssCodeBlock);
+    
+    const demoContainer = document.createElement("div");
+    this.#elements.demoContainer = demoContainer;
+    demoContainer.classList.add(this.#classNames.demoContainer);
+    container.appendChild(demoContainer);
+
+    const demoText_1 = document.createElement("p");
+    this.#elements.demoText_1 = demoText_1;
+    demoText_1.classList.add(this.#classNames.demoText);
+    demoText_1.innerHTML = "First paragraph element inside demo container.";
+    demoContainer.appendChild(demoText_1);
   }
 
   #applyStyling() {
@@ -127,8 +116,8 @@ class CSSPlayground {
   }
 
   #modifyChanges(changes, removes) {
-    const demoText = this.#elements.demoText;
-    const demoTextStyle = demoText.style;
+    const demoText_1 = this.#elements.demoText_1;
+    const demoTextStyle = demoText_1.style;
     if (Object.keys(changes).length > 0) {
       for (const prop in changes) {
         demoTextStyle.setProperty(prop, changes[prop]);
